@@ -50,6 +50,7 @@ class fichas(tablero):
 estetica1 = estetica()
 tablero1 = tablero()
 ficha1 = fichas()
+# klk
 
 #llamas
 estetica1.piesas()
