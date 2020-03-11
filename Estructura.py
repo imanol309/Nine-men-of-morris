@@ -9,6 +9,7 @@ z = input("Nombre del jugador1:")
 e = input("Nombre del jugador2:")
 system("cls")
 
+
 class tablero():
     def __init__(self):
         self.a = ["·","——","——","·","——","——","·"]
@@ -29,6 +30,7 @@ class tablero():
                 print(self.matrix[e][i],end=' ')
             print('')
         print("  "'0',' 1',' 2','3','4',' 5',' 6')
+
 
 
 class fichas(tablero):    
@@ -53,12 +55,101 @@ class fichas(tablero):
             else:
                 print('JUGADA INVALIDA')
                 ficha1.piezas_en_el_tablero(jugador1,nombre_jugador,po) 
+
+
+
+    def movimientos(self,fila,coluna,filamoverse,colunamoverse,nombre,ficha):     
+        print('juega ' + nombre + ' = ' + ficha)
+        self.ws = input('LA FILA DE '+ nombre + ' QUE TU QUIERES MOVER:')
+        self.wa = input('LA COLUNA DE ' + nombre + ' QUE TU QUIERES MOVER:')
+        if (self.ws not in self.verificacion or self.wa not in self.verificacion or 
+            self.ws == '' and self.ws == '' or self.ws == '\n' and self.lws== '\n'):
+            print('ESTA JUGADA ES INVALIDA')
+            ficha1.movimientos(fila,coluna,filamoverse,colunamoverse,nombre,ficha)
+        else:
+            if (self.matrix[int(self.ws)][int(self.wa)] == self.matrix[int(fila)][int(coluna)] and
+                self.matrix[int(self.ws)][int(self.wa)] == ficha):
+                ws = int(input('cual fila quieres'))
+                wa = int(input('cual coluna quieres '))
+                if ws == filamoverse and wa == colunamoverse or ws == colunamoverse and wa == filamoverse:
+                    if self.matrix[int(ws)][int(wa)] == "·" or self.matrix[int(ws)][int(wa)] == " · ":
+                        if self.matrix[int(ws)][int(wa)] == " · ":
+                                self.matrix[int(self.lk)][int(self.lj)] = " " + ficha + " "
+                        else:
+                            self.matrix[int(self.ws)][int(self.wa)] = "·"
+                            self.matrix[int(ws)][int(wa)] = ficha
+                        system('cls')
+                        ficha1.imprimir()
+                    else:
+                        print('ESTA POSICION NO SE PUEDE')
+                        ficha1.movimientos(fila,coluna,filamoverse,colunamoverse,nombre,ficha)
+                else:
+                    print('ESTA POSICION NO SE PUEDE1')
+                    ficha1.movimientos(fila,coluna,filamoverse,colunamoverse,nombre,ficha)
+            else:
+                print('ESTA POSICION NO SE PUEDE2')
+                ficha1.movimientos(fila,coluna,filamoverse,colunamoverse,nombre,ficha)
+
+
+
+
+    def movimientos1(self,fila,coluna,filamoverse,colunamoverse,nueva,nombre,ficha):     
+        print('juega ' + nombre + ' = ' + ficha)
+        self.ws = input('LA FILA DE '+ nombre + ' QUE TU QUIERES MOVER:')
+        self.wa = input('LA COLUNA DE ' + nombre + ' QUE TU QUIERES MOVER:')
+        if (self.ws not in self.verificacion or self.wa not in self.verificacion or 
+            self.ws == '' and self.ws == '' or self.ws == '\n' and self.lws== '\n'):
+            print('ESTA JUGADA ES INVALIDA')
+            ficha1.movimientos1(fila,coluna,filamoverse,colunamoverse,nombre,ficha)
+        else:
+            if (self.matrix[int(self.ws)][int(self.wa)] == self.matrix[int(fila)][int(coluna)] and
+                self.matrix[int(self.ws)][int(self.wa)] == ficha):
+                ws = int(input('cual fila quieres'))
+                wa = int(input('cual coluna quieres '))
+                if ws == nueva and wa == colunamoverse or ws == colunamoverse and wa == filamoverse:
+                    if self.matrix[int(ws)][int(wa)] == "·" or self.matrix[int(ws)][int(wa)] == " · ":
+                        if self.matrix[int(ws)][int(wa)] == " · ":
+                            self.matrix[int(self.ws)][int(self.wa)] = "·"
+                            self.matrix[int(ws)][int(wa)] = " " + ficha + " "
+                        else:
+                            self.matrix[int(self.ws)][int(self.wa)] = "·"
+                            self.matrix[int(ws)][int(wa)] = ficha
+                        system('cls')
+                        ficha1.imprimir()
+                    else:
+                        print('ESTA POSICION NO SE PUEDE')
+                        ficha1.movimientos1(fila,coluna,filamoverse,colunamoverse,nombre,ficha)
+                else:
+                    print('ESTA POSICION NO SE PUEDE1')
+                    ficha1.movimientos1(fila,coluna,filamoverse,colunamoverse,nombre,ficha)
+            else:
+                print('ESTA POSICION NO SE PUEDE2')
+                ficha1.movimientos1(fila,coluna,filamoverse,colunamoverse,nombre,ficha)
+                
+class llamas_de_movimientos:
+    def llamadas(self):
+        ficha1.movimientos(0,0,3,0,z,'●')
+        ficha1.movimientos(6,6,6,3,z,'●')
+        ficha1.movimientos(1,1,1,3,z,'●')
+        ficha1.movimientos(2,2,2,3,z,'●')
+        ficha1.movimientos(4,4,4,3,z,'●')
+        ficha1.movimientos(5,5,5,3,z,'●')
+    def llamadas2(self):
+        ficha1.movimientos1(0,6,6,3,0,z,'●')
+        ficha1.movimientos1(1,5,5,3,1,z,'●')
+        ficha1.movimientos1(2,4,4,3,2,z,'●')
+        ficha1.movimientos1(4,2,2,3,4,z,'●')
+        ficha1.movimientos1(5,1,1,3,5,z,'●')
+        ficha1.movimientos1(6,0,0,3,6,z,'●')
+    # def llamadas3(self):
+
+
 class contador:
     def contador_de_jugadas(self):
         c_jugador1 = 9
         c_jugador2 = 9
         i = 0
-        while i < 9:
+        while i < 2:
             i+=1
             while c_jugador1 + 1 >  c_jugador2:
                 ficha1.piezas_en_el_tablero('●',z,9)
@@ -66,29 +157,35 @@ class contador:
             while  c_jugador2 > c_jugador1:
                 ficha1.piezas_en_el_tablero('○',e,9)
                 c_jugador2-=1
-                
 
-    # def movimientos(self,fila,coluna,fila_donde_puede_moverse,coluna_donde_puede_moverse):
-    #     print('juega ' + z + ' = ●')
-    #     self.ws = input('LA FILA DE '+ z + ' QUE TU QUIERES MOVER:')
-    #     self.wa = input('LA COLUNA DE ' + z + ' QUE TU QUIERES MOVER:')
-    #     if self.matrix[int(self.ws)][int(self.wa)] == self.matrix[int(fila)][int(coluna)]:
-    #         self.matrix[int(self.ws)][int(self.wa)] = "·"
-    #         print('SOLO TIENE DOS JUGADAS = 0,3 O 3,0')
-    #         ws = int(input('cual fila quieres'))
-    #         wa = int(input('cual coluna quieres '))
-    #         condicion = self.matrix[int(ws)][int(wa)] == "·" or self.matrix[int(ws)][int(wa)] == " · "
-    #         if ws == fila_donde_puede_moverse and wa == coluna_donde_puede_moverse or ws == coluna_donde_puede_moverse and wa == fila_donde_puede_moverse:
-    #             if condicion:
-    #                 self.matrix[int(ws)][int(wa)] = '●'
-    #                 system('cls')
-    #                 ficha1.imprimir()
-    #             else:
-    #                 print('ESTA POSICION NO SE PUEDE')
-    #         else:
-    #             print('ESTA POSICION NO SE PUEDE')
-    #     else:
-    #         print('ESTA POSICION NO SE PUEDE')
+
+#objetos
+estetica1 = estetica()
+tablero1 = tablero()
+ficha1 = fichas()
+contadores1 = contador()
+llamas_de_movimientos1 = llamas_de_movimientos()
+
+# #llamas
+estetica1.piesas()
+tablero1.imprimir()
+contadores1.contador_de_jugadas()
+llamas_de_movimientos1.llamadas()
+llamas_de_movimientos1.llamadas2()
+# ficha1.movimientos(0,0,0,3)
+# ficha1.Moviemientos_de_las_piezas()
+
+
+
+
+
+
+
+
+
+
+
+
 
 
         # if self.matrix[int(self.ws)][int(self.wa)] == self.matrix[int(3)][int(0)]:
@@ -177,18 +274,5 @@ class contador:
     #                             else:
     #                                 print('ESTA PIEZA NO ES TU YA')
                                     
-#objetos
-
-estetica1 = estetica()
-tablero1 = tablero()
-ficha1 = fichas()
-contadores1 = contador()
-# #llamas
-
-estetica1.piesas()
-tablero1.imprimir()
-contadores1.contador_de_jugadas()
-# ficha1.movimientos(0,0,0,3)
-# ficha1.Moviemientos_de_las_piezas()
 
 
