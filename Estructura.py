@@ -67,22 +67,22 @@ class fichas(tablero):
             print('ESTA JUGADA ES INVALIDA')
             ficha1.movimientos(fila,coluna,filamoverse,colunamoverse,nombre,ficha)
         else:
-            if (self.matrix[int(self.ws)][int(self.wa)] == self.matrix[int(fila)][int(coluna)] and
+            if(self.ws == fila and self.wa == coluna or
                 self.matrix[int(self.ws)][int(self.wa)] == ficha):
                 ws = int(input('cual fila quieres'))
                 wa = int(input('cual coluna quieres '))
-                if ws == filamoverse and wa == colunamoverse or ws == colunamoverse and wa == filamoverse:
-                    if self.matrix[int(ws)][int(wa)] == "·" or self.matrix[int(ws)][int(wa)] == " · ":
-                        if self.matrix[int(ws)][int(wa)] == " · ":
+                if  ws == colunamoverse and wa == filamoverse or ws == filamoverse and wa == colunamoverse :
+                        if self.matrix[int(ws)][int(wa)] == "·" or self.matrix[int(ws)][int(wa)] == " · ":
+                            if self.matrix[int(ws)][int(wa)] == " · ":
                                 self.matrix[int(self.lk)][int(self.lj)] = " " + ficha + " "
+                            else:
+                                self.matrix[int(self.ws)][int(self.wa)] = "·"
+                                self.matrix[int(ws)][int(wa)] = ficha
+                            system('cls')
+                            ficha1.imprimir()
                         else:
-                            self.matrix[int(self.ws)][int(self.wa)] = "·"
-                            self.matrix[int(ws)][int(wa)] = ficha
-                        system('cls')
-                        ficha1.imprimir()
-                    else:
-                        print('ESTA POSICION NO SE PUEDE')
-                        ficha1.movimientos(fila,coluna,filamoverse,colunamoverse,nombre,ficha)
+                            print('ESTA POSICION NO SE PUEDE')
+                            ficha1.movimientos(fila,coluna,filamoverse,colunamoverse,nombre,ficha)
                 else:
                     print('ESTA POSICION NO SE PUEDE1')
                     ficha1.movimientos(fila,coluna,filamoverse,colunamoverse,nombre,ficha)
@@ -92,17 +92,16 @@ class fichas(tablero):
 
 
 
-
     def movimientos1(self,fila,coluna,filamoverse,colunamoverse,nueva,nombre,ficha):     
         print('juega ' + nombre + ' = ' + ficha)
         self.ws = input('LA FILA DE '+ nombre + ' QUE TU QUIERES MOVER:')
         self.wa = input('LA COLUNA DE ' + nombre + ' QUE TU QUIERES MOVER:')
+        print(self.matrix[int(self.ws)][int(self.wa)])
         if (self.ws not in self.verificacion or self.wa not in self.verificacion or 
             self.ws == '' and self.ws == '' or self.ws == '\n' and self.lws== '\n'):
             print('ESTA JUGADA ES INVALIDA')
-            ficha1.movimientos1(fila,coluna,filamoverse,colunamoverse,nombre,ficha)
         else:
-            if (self.matrix[int(self.ws)][int(self.wa)] == self.matrix[int(fila)][int(coluna)] and
+            if (self.ws == fila and self.wa == coluna or
                 self.matrix[int(self.ws)][int(self.wa)] == ficha):
                 ws = int(input('cual fila quieres'))
                 wa = int(input('cual coluna quieres '))
@@ -115,7 +114,7 @@ class fichas(tablero):
                             self.matrix[int(self.ws)][int(self.wa)] = "·"
                             self.matrix[int(ws)][int(wa)] = ficha
                         system('cls')
-                        ficha1.imprimir()
+                        ficha1.imprimir
                     else:
                         print('ESTA POSICION NO SE PUEDE')
                         ficha1.movimientos1(fila,coluna,filamoverse,colunamoverse,nombre,ficha)
@@ -125,25 +124,33 @@ class fichas(tablero):
             else:
                 print('ESTA POSICION NO SE PUEDE2')
                 ficha1.movimientos1(fila,coluna,filamoverse,colunamoverse,nombre,ficha)
-                
-class llamas_de_movimientos:
+class llama:      
     def llamadas(self):
-        ficha1.movimientos(0,0,3,0,z,'●')
         ficha1.movimientos(6,6,6,3,z,'●')
         ficha1.movimientos(1,1,1,3,z,'●')
+        ficha1.movimientos(0,0,3,0,z,'●')
         ficha1.movimientos(2,2,2,3,z,'●')
         ficha1.movimientos(4,4,4,3,z,'●')
         ficha1.movimientos(5,5,5,3,z,'●')
-    def llamadas2(self):
         ficha1.movimientos1(0,6,6,3,0,z,'●')
         ficha1.movimientos1(1,5,5,3,1,z,'●')
         ficha1.movimientos1(2,4,4,3,2,z,'●')
         ficha1.movimientos1(4,2,2,3,4,z,'●')
         ficha1.movimientos1(5,1,1,3,5,z,'●')
         ficha1.movimientos1(6,0,0,3,6,z,'●')
-    # def llamadas3(self):
-
-
+        # ficha1.movimientos(6,6,6,3,e,'○')
+        # ficha1.movimientos(1,1,1,3,e,'○')
+        # ficha1.movimientos(0,0,3,0,e,'○')
+        # ficha1.movimientos(2,2,2,3,e,'○')
+        # ficha1.movimientos(4,4,4,3,e,'○')
+        # ficha1.movimientos(5,5,5,3,e,'○')
+        # ficha1.movimientos1(0,6,6,3,0,e,'○')
+        # ficha1.movimientos1(1,5,5,3,1,e,'○')
+        # ficha1.movimientos1(2,4,4,3,2,e,'○')
+        # ficha1.movimientos1(4,2,2,3,4,e,'○')
+        # ficha1.movimientos1(5,1,1,3,5,e,'○')
+        # ficha1.movimientos1(6,0,0,3,6,e,'○')
+                # c1-=1
 class contador:
     def contador_de_jugadas(self):
         c_jugador1 = 9
@@ -164,14 +171,16 @@ estetica1 = estetica()
 tablero1 = tablero()
 ficha1 = fichas()
 contadores1 = contador()
-llamas_de_movimientos1 = llamas_de_movimientos()
+llama1 = llama()
+# llamas_de_movimientos1 = llamas_de_movimientos()
 
 # #llamas
 estetica1.piesas()
 tablero1.imprimir()
 contadores1.contador_de_jugadas()
-llamas_de_movimientos1.llamadas()
-llamas_de_movimientos1.llamadas2()
+llama1.llamadas()
+# llamas_de_movimientos1.llamadas()
+# llamas_de_movimientos1.llamadas2()
 # ficha1.movimientos(0,0,0,3)
 # ficha1.Moviemientos_de_las_piezas()
 
