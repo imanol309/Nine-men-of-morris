@@ -1,4 +1,5 @@
 from os import system
+
 class estetica:
     def piesas(self):
         print ('JUGADOR 1 =' " ●●●●●●●●●")
@@ -20,6 +21,7 @@ class tablero():
         self.g = ["·","——","——","·","——","——","·"]
         self.matrix = [self.a,self.b,self.c,self.d,self.e,self.f,self.g]
         self.verificacion = "0123456"
+        self. jugadas_posibles = ('00,03,06,11,13,15,22,23,24,30,31,32,34,35,36,42,43,44,51,53,55,60,63,66')
     def imprimir(self):
         r = 0
         for e in range(0,len(self.matrix)):
@@ -31,14 +33,12 @@ class tablero():
         print("  "'0',' 1',' 2','3','4',' 5',' 6')
 
 
-veri =  ('1,3,6,0,2,4,5')
 class fichas(tablero): 
-
     def piezas_en_el_tablero(self,jugador1,nombre_jugador,po):
         self.lk = input('FILA DE : ' + nombre_jugador)
         self.lj= input('COLUNA DE : '+ nombre_jugador)
         if (self.lk not in self.verificacion or self.lj not in self.verificacion or 
-            self.lk == '' and self.lk == '' or self.lk == '\n' and self.lk == '\n'):
+            self.lk == '' or self.lj == '' or self.lk == '\n' and self.lk == '\n'):
             print('ESTA JUGADA ES INVALIDA')
             ficha1.piezas_en_el_tablero(jugador1,nombre_jugador,po) 
         else:
@@ -55,111 +55,227 @@ class fichas(tablero):
             else:
                 print('JUGADA INVALIDA')
                 ficha1.piezas_en_el_tablero(jugador1,nombre_jugador,po) 
-                
 
-
-    def movimientos(self,filamoverse,colunamoverse,nombre,ficha):
-            print('juega ' + nombre + ' = ' + ficha)
-            self.ws = input('LA FILA DE '+ nombre + ' QUE TU QUIERES MOVER:')
-            self.wa = input('LA COLUNA DE ' + nombre + ' QUE TU QUIERES MOVER:')
-            if (self.ws not in self.verificacion or self.wa not in self.verificacion or 
-                self.ws == '' and self.ws == '' or self.ws == '\n' and self.ws== '\n'):
-                print('ESTA JUGADA ES INVALIDA')
-                ficha1.movimientosself(filamoverse,colunamoverse,nombre,ficha)
-            else:
-                if int(self.ws) == int(self.ws) and int(self.wa) == int(self.ws) and self.matrix[int(self.ws)][int(self.wa)] == ficha:
-                    ws = int(input('cual fila quieres'))
-                    wa = int(input('cual coluna quieres '))
-                    if str(ws) in veri and str(wa) in veri or str(ws) in veri and str(wa) in veri :
-                        if self.matrix[(ws)][(wa)] == "·" or self.matrix[(ws)][(wa)] == " · ":
-                            if self.matrix[(ws)][(wa)] == " · ":
-                                self.matrix[int(self.ws)][int(self.wa)] = "·"
-                                self.matrix[(ws)][(wa)] = " " + ficha + " "
-                            else:
-                                self.matrix[int(self.ws)][int(self.wa)] = "·"
-                                self.matrix[(ws)][(wa)] = ficha
-                            system('cls')
-                            ficha1.imprimir()
-                        else:
-                            print('ESTA POSICION NO SE PUEDE')
-                            ficha1.movimientos(filamoverse,colunamoverse,nombre,ficha)
-                    else:
-                        print('ESTA POSICION NO SE PUEDE1')
-                        ficha1.movimientos(filamoverse,colunamoverse,nombre,ficha)
-                else:
-                    print('ESTA POSICION NO SE PUEDE2')
-                    ficha1.movimientos(filamoverse,colunamoverse,nombre,ficha)
-
-
-
-    def movimientos1(self,fila,coluna,filamoverse,colunamoverse,nueva,nombre,ficha):     
-        print('juega ' + nombre + ' = ' + ficha)
-        self.ws = input('LA FILA DE '+ nombre + ' QUE TU QUIERES MOVER:')
-        self.wa = input('LA COLUNA DE ' + nombre + ' QUE TU QUIERES MOVER:')
-        print(self.matrix[int(self.ws)][int(self.wa)])
+    def verificaciones(self,nombre2,ficha2,ip):
+        print('juega ' + nombre2 + ' = ' + ficha2)
+        self.ws = input('LA FILA DE '+ nombre2 + ' QUE TU QUIERES MOVER:')
+        self.wa = input('LA COLUNA DE ' + nombre2 + ' QUE TU QUIERES MOVER:')
         if (self.ws not in self.verificacion or self.wa not in self.verificacion or 
-            self.ws == '' and self.ws == '' or self.ws == '\n' and self.lws== '\n'):
+            self.ws == '' or self.wa == '' or self.ws == '\n' and self.ws== '\n'):
             print('ESTA JUGADA ES INVALIDA')
-            ficha1.movimientos1(fila,coluna,filamoverse,colunamoverse,nueva,nombre,ficha)
+            ficha1.verificaciones(nombre2,ficha2,ip)
         else:
-            if (int(self.ws) == fila and int(self.wa) == coluna and
-                self.matrix[int(self.ws)][int(self.wa)] == ficha):
-                ws = int(input('cual fila quieres'))
-                wa = int(input('cual coluna quieres '))
-                if ws == nueva and wa == colunamoverse or ws == colunamoverse and wa == filamoverse:
-                    if self.matrix[int(ws)][int(wa)] == "·" or self.matrix[int(ws)][int(wa)] == " · ":
-                        if self.matrix[int(ws)][int(wa)] == " · ":
-                            self.matrix[int(self.ws)][int(self.wa)] = "·"
-                            self.matrix[int(ws)][int(wa)] = " " + ficha + " "
-                        else:
-                            self.matrix[int(self.ws)][int(self.wa)] = "·"
-                            self.matrix[int(ws)][int(wa)] = ficha
-                        system('cls')
-                        ficha1.imprimir()
-                    else:     
-                        print('ESTA POSICION NO SE PUEDE')
-                        ficha1.movimientos1(fila,coluna,filamoverse,colunamoverse,nueva,nombre,ficha)
+            self.t = self.wa + self.ws
+            if self.t in self.jugadas_posibles:
+                if self.matrix[int(self.ws)][int(self.wa)] == ficha2:
+                    print('ESTA PIESA SI ES TUYA')
+                    ficha1.posiciones_de_movimientos(nombre2,ficha2,ip)
                 else:
-                    print('ESTA POSICION NO SE PUEDE1')
-                    ficha1.movimientos1(fila,coluna,filamoverse,colunamoverse,nueva,nombre,ficha)
+                    print('ESTA FICHA NO ES TUYA')
+                    ficha1.verificaciones(nombre2,ficha2,ip)
             else:
-                print('ESTA POSICION NO SE PUEDE2')
-                ficha1.movimientos1(fila,coluna,filamoverse,colunamoverse,nueva,nombre,ficha)
-
-
-    def llamadas(self):
-            ficha1.movimientos(1,3,z,'●')
-            ficha1.movimientos(6,3,z,'●')
-            ficha1.movimientos(3,0,z,'●')
-            ficha1.movimientos(2,3,z,'●')
-            ficha1.movimientos(4,3,z,'●')
-            ficha1.movimientos(5,3,z,'●')
-            ficha1.movimientos1(0,6,6,3,0,z,'●')
-            ficha1.movimientos1(1,5,5,3,1,z,'●')
-            ficha1.movimientos1(2,4,4,3,2,z,'●')
-            ficha1.movimientos1(4,2,2,3,4,z,'●')
-            ficha1.movimientos1(5,1,1,3,5,z,'●')
-            ficha1.movimientos1(6,0,0,3,6,z,'●') 
-
-    # ficha1.movimientos(6,6,6,3,e,'○')
-    # ficha1.movimientos(1,1,1,3,e,'○')
-    # ficha1.movimientos(0,0,3,0,e,'○')
-    # ficha1.movimientos(2,2,2,3,e,'○')
-    # ficha1.movimientos(4,4,4,3,e,'○')
-    # ficha1.movimientos(5,5,5,3,e,'○')
-    # ficha1.movimientos1(0,6,6,3,0,e,'○')
-    # ficha1.movimientos1(1,5,5,3,1,e,'○')
-    # ficha1.movimientos1(2,4,4,3,2,e,'○')
-    # ficha1.movimientos1(4,2,2,3,4,e,'○')
-    # ficha1.movimientos1(5,1,1,3,5,e,'○')
-    # ficha1.movimientos1(6,0,0,3,6,e,'○')
+                print('ESTA POSICION NO EXISTE O NO ES PERMITIDAD')
+                ficha1.verificaciones(nombre2,ficha2,ip)
+                
+                
+    def posiciones_de_movimientos(self,nombre2,ficha2,ip): 
+        print('juega ' + nombre2 + ' = ' + ficha2)
+        self.pl = input('A CUAL FILA LA QUIERES MOVER:')
+        self.pls = input('A CUAL COLUNA LA QUIERES MOVER:') 
+        p = self.pl +self.pls 
+            
+        # Posicion de una linia #1
+        if self.t == '00' :
+            if p == '03' or p == '30':
+                ficha1.imprimidor(nombre2,ficha2,ip)
+            else:
+                print('Esta jugada no se puede')
+                ficha1.posiciones_de_movimientos(nombre2,ficha2,ip)
+                
+        if self.t == '11' :
+            if p == '13' or p == '31':
+                ficha1.imprimidor(nombre2,ficha2,ip)
+            else:
+                print('Esta jugada no se puede')
+                ficha1.posiciones_de_movimientos(nombre2,ficha2,ip) 
+                      
+        if self.t == '22' :
+            if p == '23' or p == '32':
+                ficha1.imprimidor(nombre2,ficha2,ip)
+            else:
+                print('Esta jugada no se puede')
+                ficha1.posiciones_de_movimientos(nombre2,ficha2,ip)    
+         
+        if self.t == '44' :
+            if p == '03' or p == '30':
+                ficha1.imprimidor(nombre2,ficha2,ip)
+            else:
+                print('Esta jugada no se puede')
+                ficha1.posiciones_de_movimientos(nombre2,ficha2,ip)         
+        if self.t == '55' :
+            if p == '53' or p == '35':
+                ficha1.imprimidor(nombre2,ficha2,ip)
+            else:
+                print('Esta jugada no se puede')
+                ficha1.posiciones_de_movimientos(nombre2,ficha2,ip)
+        if self.t == '66' :
+            if p == '63' or p == '36':
+                ficha1.imprimidor(nombre2,ficha2,ip)
+            else:
+                print('Esta jugada no se puede')
+                ficha1.posiciones_de_movimientos(nombre2,ficha2,ip)
         
+        # Posicion de una linia #2
+        
+        if self.t == '06' :
+            if p == '03' or p == '36':
+                ficha1.imprimidor(nombre2,ficha2,ip)
+            else:
+                print('Esta jugada no se puede')
+                ficha1.posiciones_de_movimientos(nombre2,ficha2,ip)
+                
+        if self.t == '15' :
+            if p == '13' or p == '35':
+                ficha1.imprimidor(nombre2,ficha2,ip)
+            else:
+                print('Esta jugada no se puede')
+                ficha1.posiciones_de_movimientos(nombre2,ficha2,ip)
+                
+        if self.t == '24' :
+            if p == '23' or p == '34':
+                ficha1.imprimidor(nombre2,ficha2,ip)
+            else:
+                print('Esta jugada no se puede')
+                ficha1.posiciones_de_movimientos(nombre2,ficha2,ip)
+        if self.t == '42' :
+            if p == '32' or p == '43':
+                ficha1.imprimidor(nombre2,ficha2,ip)
+            else:
+                print('Esta jugada no se puede')
+                ficha1.posiciones_de_movimientos(nombre2,ficha2,ip)
+        if self.t == '51' :
+            if p == '31' or p == '53':
+                ficha1.imprimidor(nombre2,ficha2,ip)
+            else:
+                print('Esta jugada no se puede')
+                ficha1.posiciones_de_movimientos(nombre2,ficha2,ip) 
+        if self.t == '60' :
+            if p == '30' or p == '63':
+                ficha1.imprimidor(nombre2,ficha2,ip)
+            else:
+                print('Esta jugada no se puede')
+                ficha1.posiciones_de_movimientos(nombre2,ficha2,ip)
+                
+        #Posicion del centro 
+               
+        if self.t == '06' :
+            if p == '00' or p == '13' or p == '06':
+                ficha1.imprimidor(nombre2,ficha2,ip)
+            else:
+                print('Esta jugada no se puede')
+                ficha1.posiciones_de_movimientos(nombre2,ficha2,ip)
+
+        if self.t == '13' :
+            if p == '03' or p == '11' or p == '15' or p == '23':
+                ficha1.imprimidor(nombre2,ficha2,ip)
+            else:
+                print('Esta jugada no se puede')
+                ficha1.posiciones_de_movimientos(nombre2,ficha2,ip)
+                
+        if self.t == '23' :
+            if p == '13' or p == '22' or p == '24':
+                ficha1.imprimidor(nombre2,ficha2,ip)
+            else:
+                print('Esta jugada no se puede')
+                ficha1.posiciones_de_movimientos(nombre2,ficha2,ip)
+                
+        if self.t == '43' :
+            if p == '42' or p == '45' or p == '53':
+                ficha1.imprimidor(nombre2,ficha2,ip)
+            else:
+                print('Esta jugada no se puede')
+                ficha1.posiciones_de_movimientos(nombre2,ficha2,ip) 
+        
+        if self.t == '53' :
+            if p == '51' or p == '43' or p == '55' or p == '63':
+                ficha1.imprimidor(nombre2,ficha2,ip)
+            else:
+                print('Esta jugada no se puede')
+                ficha1.posiciones_de_movimientos(nombre2,ficha2,ip) 
+                
+        if self.t == '63' :
+            if p == '60' or p == '53' or p == '66':
+                ficha1.imprimidor(nombre2,ficha2,ip)
+            else:
+                print('Esta jugada no se puede')
+                ficha1.posiciones_de_movimientos(nombre2,ficha2,ip)
+                
+        # Posiciones del centro #2
+        
+        if self.t == '30' :
+            if p == '00' or p == '60' or p == '31':
+                ficha1.imprimidor(nombre2,ficha2,ip)
+            else:
+                print('Esta jugada no se puede')
+                ficha1.posiciones_de_movimientos(nombre2,ficha2,ip)  
+        
+        if self.t == '31' :
+            if p == '30' or p == '11' or p == '51' or p == '32':
+                ficha1.imprimidor(nombre2,ficha2,ip)
+            else:
+                print('Esta jugada no se puede')
+                ficha1.posiciones_de_movimientos(nombre2,ficha2,ip)
+        
+        if self.t == '32' :
+            if p == '31' or p == '22' or p == '42':
+                ficha1.imprimidor(nombre2,ficha2,ip)
+            else:
+                print('Esta jugada no se puede')
+                ficha1.posiciones_de_movimientos(nombre2,ficha2,ip)    
+                
+        if self.t == '34' :
+            if p == '24' or p == '44' or p == '35':
+                ficha1.imprimidor(nombre2,ficha2,ip)
+            else:
+                print('Esta jugada no se puede')
+                ficha1.posiciones_de_movimientos(nombre2,ficha2,ip)
+        
+        if self.t == '35' :
+            if p == '34' or p == '15' or p == '36' or p == '55':
+                ficha1.imprimidor(nombre2,ficha2,ip)
+            else:
+                print('Esta jugada no se puede')
+                ficha1.posiciones_de_movimientos(nombre2,ficha2,ip)
+        
+        if self.t == '36' :
+            if p == '06' or p == '35' or p == '66':
+                ficha1.imprimidor(nombre2,ficha2,ip)
+            else:
+                print('Esta jugada no se puede')
+                ficha1.posiciones_de_movimientos(nombre2,ficha2,ip)
+                
+    def imprimidor(self,nombre2,ficha2,ip):
+        if self.matrix[int(self.pl)][int(self.pls)] == "·" or self.matrix[int(self.pl)][int(self.pls)] == " · ":
+                if self.matrix[int(self.pl)][int(self.pls)] == " · ":
+                    self.matrix[int(self.ws)][int(self.wa)] = "·"
+                    self.matrix[int(self.pl)][int(self.pls)] = " " + ficha2 + " "
+                else:
+                    self.matrix[int(self.ws)][int(self.wa)] = "·"
+                    self.matrix[int(self.pl)][int(self.pls)] = ficha2
+                ficha1.imprimir()
+                system('cls')
+                estetica1.piesas()
+                ficha1.imprimir()
+        else:
+            print('ESTA POSICION NO SE PUEDE')
+            ficha1.verificaciones(nombre2,ficha2,ip)
+
 class contador:
     def contador_de_jugadas(self):
         c_jugador1 = 9
         c_jugador2 = 9
         i = 0
-        while i < 2:
+        while i < 3:
             i+=1
             while c_jugador1 + 1 >  c_jugador2:
                 ficha1.piezas_en_el_tablero('●',z,9)
@@ -167,121 +283,34 @@ class contador:
             while  c_jugador2 > c_jugador1:
                 ficha1.piezas_en_el_tablero('○',e,9)
                 c_jugador2-=1
-
-
-
+                
+class contadors:
+    def contador_de_movimientos(self):
+        m_jugador1 = 9
+        m_jugador2 = 9
+        e = 0
+        while e < 3:
+            e+=1
+            while m_jugador1 + 1 > m_jugador2:
+                ficha1.verificaciones(z,'●',9)
+                ficha1.posiciones_de_movimientos(z,'●',9)
+                ficha1.imprimidor(z,'●',9)
+                m_jugador1-=1
+            while m_jugador2 > m_jugador1:
+                ficha1.verificaciones(e,'○',9)
+                ficha1.posiciones_de_movimientos(e,'○',9)
+                ficha1.imprimidor(e,'○',9)   
+                m_jugador2-=1
+                
 #objetos
 estetica1 = estetica()
 tablero1 = tablero()
 ficha1 = fichas()
 contadores1 = contador()
-# llama1 = llama()
-
+contadors1 = contadors()
 
 # #llamas
 estetica1.piesas()
 tablero1.imprimir()
 contadores1.contador_de_jugadas()
-ficha1.llamadas()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        # if self.matrix[int(self.ws)][int(self.wa)] == self.matrix[int(3)][int(0)]:
-        #     self.matrix[int(self.ws)][int(self.wa)] = "·"
-        #     print('SOLO TIENES ESTAS JUGADAS = 0,0 O 3,1 O 6,0')
-        #     ws 
-        #     wa 
-        #     if ws == 0 and wa == 0 or ws == 3 and wa == 1 or ws == 6 and wa == 0:
-        #         if condicion:
-        #             self.matrix[int(ws)][int(wa)] = '●'
-        #             system('cls')
-        #             ficha1.imprimir()
-        #         else:
-        #             print('ESTA POSICION NO SE PUEDE')
-        #     else:
-        #         print('ESTA POSICION NO SE PUEDE')
-        # else:
-        #     print('ESTA POSICION NO SE PUEDE')
-            
-            
-    # def Moviemientos_de_las_piezas(self):
-    #     contador_player1 = 20
-    #     contador_player2 = 20
-    #     contador = 0
-    #     while contador < 4:
-    #         contador+=1
-    #         while contador_player1 + 1 > contador_player2:
-    #             ws = input('LA FILA DEL JUGADOR 1 QUE TU QUIERES MOVER:')
-    #             wa = input('LA COLUNA DEL JUGADOR 1 QUE TU QUIERES MOVER:')
-    #             if ws not in self.verificacion or wa not in self.verificacion or ws == ' ' and wa == ' ' or ws == '\n' or wa == '\n':
-    #                 print('ESTA PIEZA NO ES TUYA O NO ES PERMITIDAD')
-    #             else:
-    #                 if self.matrix[int(ws)][int(wa)] == '●' or self.matrix[int(ws)][int(wa)] == ' ● ':
-    #                     print('ESTA PIEZA NO ES TUYA O NO ES PERMITIDAD')
-    #                 else:
-    #                     if ws not in self.verificacion or wa not in self.verificacion or ws == ' ' and wa == ' ' or ws == '\n' or wa == '\n':
-    #                         print('ESTA PIEZA NO ES TUYA ')
-    #                     else:
-    #                         if self.matrix[int(ws)][int(wa)] == "·" or self.matrix[int(ws)][int(wa)] == " · ":
-    #                             print('ESTA POSICION NO ES PERMITIDA')
-    #                         else:
-    #                             print('ESTA PIEZA SI ES TU YA')
-    #                             self.matrix[int(ws)][int(wa)] = "·"
-    #                             ws= input('LA FILA DEL JUGADOR 1 A DONDE QUIERES MOVER:')
-    #                             wa = input('LA COLUNA DEL JUGADOR 1 A DONDE QUIERES MOVER:')
-    #                             if self.matrix[int(ws)][int(wa)] == "·" or self.matrix[int(ws)][int(wa)] == " · ":
-    #                                 if self.matrix[int(ws)][int(wa)] == " · ":
-    #                                     self.matrix[int(ws)][int(wa)] = " " + "○" + " "
-    #                                 else:
-    #                                     self.matrix[int(ws)][int(wa)] = "○"
-    #                                 ficha1.imprimir()
-    #                                 system('cls')
-    #                                 ficha1.imprimir()
-    #                                 contador_player1-=1
-    #                             else:
-    #                                 print('ESTA PIEZA NO ES TU YA')
-    #         while contador_player2 > contador_player1:
-    #             ws = input('LA FILA DEL JUGADOR 2 QUE TU QUIERES MOVER:')
-    #             wa = input('LA COLUNA DEL JUGADOR 2 QUE TU QUIERES MOVER:')
-    #             if ws not in self.verificacion or wa not in self.verificacion or ws == ' ' and wa == ' ' or ws == '\n' or wa == '\n':
-    #                 print('ESTA PIEZA NO ES TUYA O NO ES PERMITIDAD')
-    #             else:
-    #                 if self.matrix[int(ws)][int(wa)] == '○' or self.matrix[int(ws)][int(wa)] == " ○ ":
-    #                     print('ESTA PIEZA NO ES TUYA O NO ES PERMITIDAD')
-    #                 else:
-    #                     if ws not in self.verificacion or wa not in self.verificacion or ws == ' ' and wa == ' ' or ws == '\n' or wa == '\n':
-    #                         print('ESTA PIEZA NO ES TUYA ')
-    #                     else:
-    #                         if self.matrix[int(ws)][int(wa)] == "·" or self.matrix[int(ws)][int(wa)] == " · ":
-    #                             print('ESTA POSICION NO ES PERMITIDA')
-    #                         else:
-    #                             print('ESTA PIEZA SI ES TU YA')
-    #                             self.matrix[int(ws)][int(wa)] = "·"
-    #                             ws= input('LA FILA DEL JUGADOR 2 A DONDE QUIERES MOVER:')
-    #                             wa = input('LA COLUNA DEL JUGADOR 2 A DONDE QUIERES MOVER:')
-    #                             if self.matrix[int(ws)][int(wa)] == "·" or self.matrix[int(ws)][int(wa)] == " · ":
-    #                                 if self.matrix[int(ws)][int(wa)] ==  " · ":
-    #                                     self.matrix[int(ws)][int(wa)] = " " + '●' + " "
-    #                                 else:
-    #                                     self.matrix[int(ws)][int(wa)] = '●'
-    #                                     # self.matrix[int(ws)][int(wa)] = "·"
-    #                                 ficha1.imprimir()
-    #                                 system('cls')
-    #                                 ficha1.imprimir()
-    #                                 contador_player2-=1 
-    #                             else:
-    #                                 print('ESTA PIEZA NO ES TU YA')
-
-
+contadors1.contador_de_movimientos()
