@@ -83,8 +83,10 @@ class fichas(tablero):
         self.pl = input('A CUAL FILA LA QUIERES MOVER:')
         self.pls = input('A CUAL COLUNA LA QUIERES MOVER:') 
         p = self.pl +self.pls 
-            
         # Posicion de una linia #1
+        if p == '2020':
+            ficha1.verificaciones(nombre2,ficha2,ip)
+            
         if self.t == '00' :
             if p == '03' or p == '30':
                 ficha1.imprimidor(nombre2,ficha2,ip)
@@ -98,26 +100,28 @@ class fichas(tablero):
             else:
                 print('Esta jugada no se puede')
                 ficha1.posiciones_de_movimientos(nombre2,ficha2,ip) 
-                      
+                
         if self.t == '22' :
             if p == '23' or p == '32':
                 ficha1.imprimidor(nombre2,ficha2,ip)
             else:
                 print('Esta jugada no se puede')
-                ficha1.posiciones_de_movimientos(nombre2,ficha2,ip)    
-         
+                ficha1.posiciones_de_movimientos(nombre2,ficha2,ip)
+                    
         if self.t == '44' :
             if p == '03' or p == '30':
                 ficha1.imprimidor(nombre2,ficha2,ip)
             else:
                 print('Esta jugada no se puede')
-                ficha1.posiciones_de_movimientos(nombre2,ficha2,ip)         
+                ficha1.posiciones_de_movimientos(nombre2,ficha2,ip)
+                         
         if self.t == '55' :
             if p == '53' or p == '35':
                 ficha1.imprimidor(nombre2,ficha2,ip)
             else:
                 print('Esta jugada no se puede')
                 ficha1.posiciones_de_movimientos(nombre2,ficha2,ip)
+                
         if self.t == '66' :
             if p == '63' or p == '36':
                 ficha1.imprimidor(nombre2,ficha2,ip)
@@ -147,18 +151,21 @@ class fichas(tablero):
             else:
                 print('Esta jugada no se puede')
                 ficha1.posiciones_de_movimientos(nombre2,ficha2,ip)
+                
         if self.t == '42' :
             if p == '32' or p == '43':
                 ficha1.imprimidor(nombre2,ficha2,ip)
             else:
                 print('Esta jugada no se puede')
                 ficha1.posiciones_de_movimientos(nombre2,ficha2,ip)
+                
         if self.t == '51' :
             if p == '31' or p == '53':
                 ficha1.imprimidor(nombre2,ficha2,ip)
             else:
                 print('Esta jugada no se puede')
-                ficha1.posiciones_de_movimientos(nombre2,ficha2,ip) 
+                ficha1.posiciones_de_movimientos(nombre2,ficha2,ip)
+                 
         if self.t == '60' :
             if p == '30' or p == '63':
                 ficha1.imprimidor(nombre2,ficha2,ip)
@@ -266,6 +273,7 @@ class fichas(tablero):
                 system('cls')
                 estetica1.piesas()
                 ficha1.imprimir()
+                ficha1.verificaciones(nombre2,ficha2,ip)
         else:
             print('ESTA POSICION NO SE PUEDE')
             ficha1.verificaciones(nombre2,ficha2,ip)
