@@ -1,14 +1,14 @@
 from os import system
 
-class estetica:
-    def piesas(self):
-        print ('JUGADOR 1 =' " ●●●●●●●●●")
-        print('JUGADOR 2 =' " ○○○○○○○○○")
 
 z = input("Nombre del jugador1:")
 e = input("Nombre del jugador2:")
 system("cls")
 
+class estetica:
+    def piesas(self):
+        print ('PIESAS DE ' + z +" = ●●●●●●●●●")
+        print('PIESAS DE ' + e +" = ○○○○○○○○○")
 
 class tablero():
     def __init__(self):
@@ -21,7 +21,7 @@ class tablero():
         self.g = ["·","——","——","·","——","——","·"]
         self.matrix = [self.a,self.b,self.c,self.d,self.e,self.f,self.g]
         self.verificacion = "0123456"
-        self. jugadas_posibles = ('00,03,06,11,13,15,22,23,24,30,31,32,34,35,36,42,43,44,51,53,55,60,63,66')
+        self. jugadas_posibles = ('00','03','06','11','13','15','22','23','24','30','31','32','34','35','36','42','43','44','51','53','55','60','63','66')
     def imprimir(self):
         r = 0
         for e in range(0,len(self.matrix)):
@@ -65,7 +65,7 @@ class fichas(tablero):
             print('ESTA JUGADA ES INVALIDA')
             ficha1.verificaciones(nombre2,ficha2,ip)
         else:
-            self.t = self.wa + self.ws
+            self.t = self.ws + self.wa
             if self.t in self.jugadas_posibles:
                 if self.matrix[int(self.ws)][int(self.wa)] == ficha2:
                     print('ESTA PIESA SI ES TUYA')
@@ -82,8 +82,9 @@ class fichas(tablero):
         print('juega ' + nombre2 + ' = ' + ficha2)
         self.pl = input('A CUAL FILA LA QUIERES MOVER:')
         self.pls = input('A CUAL COLUNA LA QUIERES MOVER:') 
-        p = self.pl +self.pls 
+        p = (self.pl + self.pls)
         # Posicion de una linia #1
+        print(p == '06')
         if p == '2020':
             ficha1.verificaciones(nombre2,ficha2,ip)
             
@@ -92,174 +93,168 @@ class fichas(tablero):
                 ficha1.imprimidor(nombre2,ficha2,ip)
             else:
                 print('Esta jugada no se puede')
-                ficha1.posiciones_de_movimientos(nombre2,ficha2,ip)
+                ficha1.verificaciones(nombre2,ficha2,ip)
                 
         if self.t == '11' :
             if p == '13' or p == '31':
                 ficha1.imprimidor(nombre2,ficha2,ip)
             else:
                 print('Esta jugada no se puede')
-                ficha1.posiciones_de_movimientos(nombre2,ficha2,ip) 
+                ficha1.verificaciones(nombre2,ficha2,ip) 
                 
         if self.t == '22' :
             if p == '23' or p == '32':
                 ficha1.imprimidor(nombre2,ficha2,ip)
             else:
                 print('Esta jugada no se puede')
-                ficha1.posiciones_de_movimientos(nombre2,ficha2,ip)
+                ficha1.verificaciones(nombre2,ficha2,ip)
                     
         if self.t == '44' :
             if p == '03' or p == '30':
                 ficha1.imprimidor(nombre2,ficha2,ip)
             else:
                 print('Esta jugada no se puede')
-                ficha1.posiciones_de_movimientos(nombre2,ficha2,ip)
-                         
+                ficha1.verificaciones(nombre2,ficha2,ip)
+
         if self.t == '55' :
             if p == '53' or p == '35':
                 ficha1.imprimidor(nombre2,ficha2,ip)
             else:
                 print('Esta jugada no se puede')
-                ficha1.posiciones_de_movimientos(nombre2,ficha2,ip)
+                ficha1.verificaciones(nombre2,ficha2,ip)
                 
         if self.t == '66' :
             if p == '63' or p == '36':
                 ficha1.imprimidor(nombre2,ficha2,ip)
             else:
                 print('Esta jugada no se puede')
-                ficha1.posiciones_de_movimientos(nombre2,ficha2,ip)
-        
+                ficha1.verificaciones(nombre2,ficha2,ip)
         # Posicion de una linia #2
-        
         if self.t == '06' :
             if p == '03' or p == '36':
                 ficha1.imprimidor(nombre2,ficha2,ip)
             else:
                 print('Esta jugada no se puede')
-                ficha1.posiciones_de_movimientos(nombre2,ficha2,ip)
+                ficha1.verificaciones(nombre2,ficha2,ip)
                 
         if self.t == '15' :
             if p == '13' or p == '35':
                 ficha1.imprimidor(nombre2,ficha2,ip)
             else:
                 print('Esta jugada no se puede')
-                ficha1.posiciones_de_movimientos(nombre2,ficha2,ip)
+                ficha1.verificaciones(nombre2,ficha2,ip)
                 
         if self.t == '24' :
             if p == '23' or p == '34':
                 ficha1.imprimidor(nombre2,ficha2,ip)
             else:
                 print('Esta jugada no se puede')
-                ficha1.posiciones_de_movimientos(nombre2,ficha2,ip)
+                ficha1.verificaciones(nombre2,ficha2,ip)
                 
         if self.t == '42' :
             if p == '32' or p == '43':
                 ficha1.imprimidor(nombre2,ficha2,ip)
             else:
                 print('Esta jugada no se puede')
-                ficha1.posiciones_de_movimientos(nombre2,ficha2,ip)
+                ficha1.verificaciones(nombre2,ficha2,ip)
                 
         if self.t == '51' :
             if p == '31' or p == '53':
                 ficha1.imprimidor(nombre2,ficha2,ip)
             else:
                 print('Esta jugada no se puede')
-                ficha1.posiciones_de_movimientos(nombre2,ficha2,ip)
-                 
+                ficha1.verificaciones(nombre2,ficha2,ip)
+
         if self.t == '60' :
             if p == '30' or p == '63':
                 ficha1.imprimidor(nombre2,ficha2,ip)
             else:
                 print('Esta jugada no se puede')
-                ficha1.posiciones_de_movimientos(nombre2,ficha2,ip)
-                
-        #Posicion del centro 
-               
-        if self.t == '06' :
+                ficha1.verificaciones(nombre2,ficha2,ip)
+        # Posiciones del centro 
+        if self.t == '03' :
             if p == '00' or p == '13' or p == '06':
                 ficha1.imprimidor(nombre2,ficha2,ip)
             else:
                 print('Esta jugada no se puede')
-                ficha1.posiciones_de_movimientos(nombre2,ficha2,ip)
+                ficha1.verificaciones(nombre2,ficha2,ip)
 
         if self.t == '13' :
             if p == '03' or p == '11' or p == '15' or p == '23':
                 ficha1.imprimidor(nombre2,ficha2,ip)
             else:
                 print('Esta jugada no se puede')
-                ficha1.posiciones_de_movimientos(nombre2,ficha2,ip)
+                ficha1.verificaciones(nombre2,ficha2,ip)
                 
         if self.t == '23' :
             if p == '13' or p == '22' or p == '24':
                 ficha1.imprimidor(nombre2,ficha2,ip)
             else:
                 print('Esta jugada no se puede')
-                ficha1.posiciones_de_movimientos(nombre2,ficha2,ip)
+                ficha1.verificaciones(nombre2,ficha2,ip)
                 
         if self.t == '43' :
             if p == '42' or p == '45' or p == '53':
                 ficha1.imprimidor(nombre2,ficha2,ip)
             else:
                 print('Esta jugada no se puede')
-                ficha1.posiciones_de_movimientos(nombre2,ficha2,ip) 
+                ficha1.verificaciones(nombre2,ficha2,ip) 
         
         if self.t == '53' :
             if p == '51' or p == '43' or p == '55' or p == '63':
                 ficha1.imprimidor(nombre2,ficha2,ip)
             else:
                 print('Esta jugada no se puede')
-                ficha1.posiciones_de_movimientos(nombre2,ficha2,ip) 
+                ficha1.verificaciones(nombre2,ficha2,ip) 
                 
         if self.t == '63' :
             if p == '60' or p == '53' or p == '66':
                 ficha1.imprimidor(nombre2,ficha2,ip)
             else:
                 print('Esta jugada no se puede')
-                ficha1.posiciones_de_movimientos(nombre2,ficha2,ip)
-                
+                ficha1.verificaciones(nombre2,ficha2,ip)
         # Posiciones del centro #2
-        
         if self.t == '30' :
             if p == '00' or p == '60' or p == '31':
                 ficha1.imprimidor(nombre2,ficha2,ip)
             else:
                 print('Esta jugada no se puede')
-                ficha1.posiciones_de_movimientos(nombre2,ficha2,ip)  
+                ficha1.verificaciones(nombre2,ficha2,ip)  
         
         if self.t == '31' :
             if p == '30' or p == '11' or p == '51' or p == '32':
                 ficha1.imprimidor(nombre2,ficha2,ip)
             else:
                 print('Esta jugada no se puede')
-                ficha1.posiciones_de_movimientos(nombre2,ficha2,ip)
+                ficha1.verificaciones(nombre2,ficha2,ip)
         
         if self.t == '32' :
-            if p == '31' or p == '22' or p == '42':
+            if p == '31' or p == '42' or p == '22' :
                 ficha1.imprimidor(nombre2,ficha2,ip)
             else:
                 print('Esta jugada no se puede')
-                ficha1.posiciones_de_movimientos(nombre2,ficha2,ip)    
+                ficha1.verificaciones(nombre2,ficha2,ip)    
                 
         if self.t == '34' :
             if p == '24' or p == '44' or p == '35':
                 ficha1.imprimidor(nombre2,ficha2,ip)
             else:
                 print('Esta jugada no se puede')
-                ficha1.posiciones_de_movimientos(nombre2,ficha2,ip)
+                ficha1.verificaciones(nombre2,ficha2,ip)
         
         if self.t == '35' :
             if p == '34' or p == '15' or p == '36' or p == '55':
                 ficha1.imprimidor(nombre2,ficha2,ip)
             else:
                 print('Esta jugada no se puede')
-                ficha1.posiciones_de_movimientos(nombre2,ficha2,ip)
+                ficha1.verificaciones(nombre2,ficha2,ip)
         
         if self.t == '36' :
             if p == '06' or p == '35' or p == '66':
                 ficha1.imprimidor(nombre2,ficha2,ip)
             else:
                 print('Esta jugada no se puede')
-                ficha1.posiciones_de_movimientos(nombre2,ficha2,ip)
+                ficha1.verificaciones(nombre2,ficha2,ip)
                 
     def imprimidor(self,nombre2,ficha2,ip):
         if self.matrix[int(self.pl)][int(self.pls)] == "·" or self.matrix[int(self.pl)][int(self.pls)] == " · ":
