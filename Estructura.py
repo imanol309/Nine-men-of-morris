@@ -1,6 +1,5 @@
 from os import system
 
-
 z = input("Nombre del jugador1:")
 e = input("Nombre del jugador2:")
 system("cls")
@@ -21,7 +20,7 @@ class tablero():
         self.g = ["·","——","——","·","——","——","·"]
         self.matrix = [self.a,self.b,self.c,self.d,self.e,self.f,self.g]
         self.verificacion = "0123456"
-        self. jugadas_posibles = ('00','03','06','11','13','15','22','23','24','30','31','32','34','35','36','42','43','44','51','53','55','60','63','66')
+        self.jugadas_posibles = ('00','03','06','11','13','15','22','23','24','30','31','32','34','35','36','42','43','44','51','53','55','60','63','66')
     def imprimir(self):
         r = 0
         for e in range(0,len(self.matrix)):
@@ -47,7 +46,7 @@ class fichas(tablero):
                     self.matrix[int(self.lk)][int(self.lj)] = " " + jugador1 + " "
                 else:
                     self.matrix[int(self.lk)][int(self.lj)] = jugador1
-                #llamas
+                #llamadas
                 ficha1.imprimir()
                 system('cls')
                 estetica1.piesas()
@@ -84,7 +83,6 @@ class fichas(tablero):
         self.pls = input('A CUAL COLUNA LA QUIERES MOVER:') 
         p = (self.pl + self.pls)
         # Posicion de una linia #1
-        print(p == '06')
         if p == '2020':
             ficha1.verificaciones(nombre2,ficha2,ip)
             
@@ -110,7 +108,7 @@ class fichas(tablero):
                 ficha1.verificaciones(nombre2,ficha2,ip)
                     
         if self.t == '44' :
-            if p == '03' or p == '30':
+            if p == '43' or p == '34':
                 ficha1.imprimidor(nombre2,ficha2,ip)
             else:
                 print('Esta jugada no se puede')
@@ -264,11 +262,9 @@ class fichas(tablero):
                 else:
                     self.matrix[int(self.ws)][int(self.wa)] = "·"
                     self.matrix[int(self.pl)][int(self.pls)] = ficha2
-                ficha1.imprimir()
                 system('cls')
-                estetica1.piesas()
+                print('SIGUAN JUGADAS HASTA QUE QUEDEN 2 FICHAS')
                 ficha1.imprimir()
-                ficha1.verificaciones(nombre2,ficha2,ip)
         else:
             print('ESTA POSICION NO SE PUEDE')
             ficha1.verificaciones(nombre2,ficha2,ip)
@@ -278,7 +274,7 @@ class contador:
         c_jugador1 = 9
         c_jugador2 = 9
         i = 0
-        while i < 3:
+        while i < 2:
             i+=1
             while c_jugador1 + 1 >  c_jugador2:
                 ficha1.piezas_en_el_tablero('●',z,9)
@@ -287,33 +283,37 @@ class contador:
                 ficha1.piezas_en_el_tablero('○',e,9)
                 c_jugador2-=1
                 
-class contadors:
-    def contador_de_movimientos(self):
+    def contador_de_movimiento(self):
         m_jugador1 = 9
         m_jugador2 = 9
-        e = 0
-        while e < 3:
-            e+=1
-            while m_jugador1 + 1 > m_jugador2:
+        p = 0
+        while p < 2:
+            p+=1
+            while m_jugador1 + 1 >  m_jugador2:
                 ficha1.verificaciones(z,'●',9)
-                ficha1.posiciones_de_movimientos(z,'●',9)
-                ficha1.imprimidor(z,'●',9)
                 m_jugador1-=1
             while m_jugador2 > m_jugador1:
                 ficha1.verificaciones(e,'○',9)
-                ficha1.posiciones_de_movimientos(e,'○',9)
-                ficha1.imprimidor(e,'○',9)   
                 m_jugador2-=1
-                
-#objetos
+                    
+# class eliminar(fichas):
+#     def eleminar_fichas (self):
+#         if self.matrix[self.lk][self.lj] == ["·","——","——","·","——","——","·"]:
+#             print('hola')
+                    
+# objetos
+
 estetica1 = estetica()
 tablero1 = tablero()
 ficha1 = fichas()
 contadores1 = contador()
-contadors1 = contadors()
+eliminar1 = eliminar()
+#llamadas
 
-# #llamas
 estetica1.piesas()
 tablero1.imprimir()
 contadores1.contador_de_jugadas()
-contadors1.contador_de_movimientos()
+
+contadores1.contador_de_movimiento()
+
+
