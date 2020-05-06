@@ -1,13 +1,13 @@
 from os import system
 
 z = input("Nombre del jugador1:")
-e = input("Nombre del jugador2:")
+ml = input("Nombre del jugador2:")
 system("cls")
 
-class estetica:
+class estetica():
     def piesas(self):
         print ('PIESAS DE ' + z +" = ●●●●●●●●●")
-        print('PIESAS DE ' + e +" = ○○○○○○○○○")
+        print('PIESAS DE ' + ml +" = ○○○○○○○○○")
 
 class tablero():
     def __init__(self):
@@ -268,8 +268,19 @@ class fichas(tablero):
         else:
             print('ESTA POSICION NO SE PUEDE')
             ficha1.verificaciones(nombre2,ficha2,ip)
+        
+            
+    def eleminar_fichas(self):
+        
+        if self.matrix[int(0)][int(0)] == '●':
+            print('hola')
+        else:
+            print('LJJ')
+            
 
-class contador:
+
+
+class contador():
     def contador_de_jugadas(self):
         c_jugador1 = 9
         c_jugador2 = 9
@@ -280,7 +291,7 @@ class contador:
                 ficha1.piezas_en_el_tablero('●',z,9)
                 c_jugador1-=1
             while  c_jugador2 > c_jugador1:
-                ficha1.piezas_en_el_tablero('○',e,9)
+                ficha1.piezas_en_el_tablero('○',ml,9)
                 c_jugador2-=1
                 
     def contador_de_movimiento(self):
@@ -293,27 +304,25 @@ class contador:
                 ficha1.verificaciones(z,'●',9)
                 m_jugador1-=1
             while m_jugador2 > m_jugador1:
-                ficha1.verificaciones(e,'○',9)
+                ficha1.verificaciones(ml,'○',9)
                 m_jugador2-=1
-                    
-# class eliminar(fichas):
-#     def eleminar_fichas (self):
-#         if self.matrix[self.lk][self.lj] == ["·","——","——","·","——","——","·"]:
-#             print('hola')
-                    
-# objetos
 
+
+
+
+
+# objetos
 estetica1 = estetica()
 tablero1 = tablero()
 ficha1 = fichas()
 contadores1 = contador()
-eliminar1 = eliminar()
-#llamadas
 
+
+#llamadas
 estetica1.piesas()
 tablero1.imprimir()
 contadores1.contador_de_jugadas()
-
+ficha1.eleminar_fichas()
 contadores1.contador_de_movimiento()
 
 
