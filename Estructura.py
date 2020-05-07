@@ -4,6 +4,9 @@ z = input("Nombre del jugador1:")
 ml = input("Nombre del jugador2:")
 system("cls")
 
+
+
+
 class estetica():
     def piesas(self):
         print ('PIESAS DE ' + z +" = ●●●●●●●●●")
@@ -30,7 +33,6 @@ class tablero():
                 print(self.matrix[e][i],end=' ')
             print('')
         print("  "'0',' 1',' 2','3','4',' 5',' 6')
-
 
 class fichas(tablero): 
     def piezas_en_el_tablero(self,jugador1,nombre_jugador,po):
@@ -270,9 +272,27 @@ class fichas(tablero):
             ficha1.verificaciones(nombre2,ficha2,ip)
         
             
-    def eleminar_fichas(self):
-        
-        if self.matrix[int(0)][int(0)] == '●':
+    def eleminar_fichas(self,l):
+        s = self.matrix
+        Fila_de_tres1 =  [[[s[0][0] == l],[s[0][3] == l],[s[0][6] == l]],
+                          [[s[1][1] == l],[s[1][3] == l],[s[1][5] == l]],
+                          [[s[2][2] == l],[s[2][3] == l],[s[2][4] == l]],
+                          [[s[3][0] == l],[s[3][1] == l],[s[3][2] == l]],
+                          [[s[3][4] == l],[s[3][5] == l],[s[3][6] == l]],
+                          [[s[4][2] == l],[s[4][3] == l],[s[4][4] == l]],
+                          [[s[5][1] == l],[s[5][3] == l],[s[5][5] == l]],
+                          [[s[6][0] == l],[s[6][3] == l],[s[6][6] == l]],
+                          
+                          [[s[0][0] == l],[s[3][0] == l],[s[6][0] == l]],
+                          [[s[1][1] == l],[s[3][1] == l],[s[5][1] == l]],
+                          [[s[2][2] == l],[s[3][2] == l],[s[4][2] == l]],
+                          [[s[0][3] == l],[s[1][3] == l],[s[2][3] == l]],
+                          [[s[4][3] == l],[s[5][3] == l],[s[6][3] == l]],
+                          [[s[2][4] == l],[s[3][4] == l],[s[4][4] == l]],
+                          [[s[1][5] == l],[s[3][5] == l],[s[5][5] == l]],
+                          [[s[0][6] == l],[s[3][6] == l],[s[6][6] == l]],]
+
+        if Fila_de_tres1[0]:
             print('hola')
         else:
             print('LJJ')
@@ -285,7 +305,7 @@ class contador():
         c_jugador1 = 9
         c_jugador2 = 9
         i = 0
-        while i < 2:
+        while i < 5:
             i+=1
             while c_jugador1 + 1 >  c_jugador2:
                 ficha1.piezas_en_el_tablero('●',z,9)
@@ -322,7 +342,7 @@ contadores1 = contador()
 estetica1.piesas()
 tablero1.imprimir()
 contadores1.contador_de_jugadas()
-ficha1.eleminar_fichas()
+ficha1.eleminar_fichas('●')
 contadores1.contador_de_movimiento()
 
 
