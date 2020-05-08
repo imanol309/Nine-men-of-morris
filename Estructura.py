@@ -290,13 +290,13 @@ class fichas(tablero):
                           [[s[4][3] == l],[s[5][3] == l],[s[6][3] == l]],
                           [[s[2][4] == l],[s[3][4] == l],[s[4][4] == l]],
                           [[s[1][5] == l],[s[3][5] == l],[s[5][5] == l]],
-                          [[s[0][6] == l],[s[3][6] == l],[s[6][6] == l]],]
-
-        if Fila_de_tres1[0]:
-            print('hola')
-        else:
-            print('LJJ')
-            
+                          [[s[0][6] == l],[s[3][6] == l],[s[6][6] == l]]]
+        
+        for h in range(0,(len(Fila_de_tres1))):
+            if h:
+                print(contadores1.contador_de_movimiento())
+            else:
+                print('ill')
 
 
 
@@ -305,7 +305,7 @@ class contador():
         c_jugador1 = 9
         c_jugador2 = 9
         i = 0
-        while i < 5:
+        while i < 3:
             i+=1
             while c_jugador1 + 1 >  c_jugador2:
                 ficha1.piezas_en_el_tablero('●',z,9)
@@ -343,6 +343,7 @@ estetica1.piesas()
 tablero1.imprimir()
 contadores1.contador_de_jugadas()
 ficha1.eleminar_fichas('●')
-contadores1.contador_de_movimiento()
+
+                
 
 
