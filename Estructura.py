@@ -282,7 +282,6 @@ class fichas(tablero):
                           [[s[4][2] == l],[s[4][3] == l],[s[4][4] == l]],
                           [[s[5][1] == l],[s[5][3] == l],[s[5][5] == l]],
                           [[s[6][0] == l],[s[6][3] == l],[s[6][6] == l]],
-                          
                           [[s[0][0] == l],[s[3][0] == l],[s[6][0] == l]],
                           [[s[1][1] == l],[s[3][1] == l],[s[5][1] == l]],
                           [[s[2][2] == l],[s[3][2] == l],[s[4][2] == l]],
@@ -291,12 +290,13 @@ class fichas(tablero):
                           [[s[2][4] == l],[s[3][4] == l],[s[4][4] == l]],
                           [[s[1][5] == l],[s[3][5] == l],[s[5][5] == l]],
                           [[s[0][6] == l],[s[3][6] == l],[s[6][6] == l]]]
-        
-        for h in range(0,(len(Fila_de_tres1))):
-            if h:
-                print(contadores1.contador_de_movimiento())
+        pee = 0
+        while pee < len(Fila_de_tres1):
+            pee+=1
+            if Fila_de_tres1[0] == [[True], [True], [True]]:
+                print('Si funciona')
             else:
-                print('ill')
+                print(contadores1.contador_de_movimiento())
 
 
 
