@@ -53,6 +53,7 @@ class fichas(tablero):
                 system('cls')
                 estetica1.piesas()
                 ficha1.imprimir()
+                
             else:
                 print('JUGADA INVALIDA')
                 ficha1.piezas_en_el_tablero(jugador1,nombre_jugador,po) 
@@ -68,7 +69,7 @@ class fichas(tablero):
         else:
             self.t = self.ws + self.wa
             if self.t in self.jugadas_posibles:
-                if self.matrix[int(self.ws)][int(self.wa)] == ficha2:
+                if self.matrix[int(self.ws)][int(self.wa)] == ficha2 or " " + ficha2 + " ":
                     print('ESTA PIESA SI ES TUYA')
                     ficha1.posiciones_de_movimientos(nombre2,ficha2,ip)
                 else:
@@ -259,20 +260,27 @@ class fichas(tablero):
     def imprimidor(self,nombre2,ficha2,ip):
         if self.matrix[int(self.pl)][int(self.pls)] == "·" or self.matrix[int(self.pl)][int(self.pls)] == " · ":
                 if self.matrix[int(self.pl)][int(self.pls)] == " · ":
-                    self.matrix[int(self.ws)][int(self.wa)] = "·"
+                    if self.t == '31' or self.t == '35': 
+                        self.matrix[int(self.ws)][int(self.wa)] = " · "
+                    else:
+                        self.matrix[int(self.ws)][int(self.wa)] = "·"
                     self.matrix[int(self.pl)][int(self.pls)] = " " + ficha2 + " "
                 else:
-                    self.matrix[int(self.ws)][int(self.wa)] = "·"
+                    if self.t == '31' or self.t == '35': 
+                        self.matrix[int(self.ws)][int(self.wa)] = " · "
+                    else:
+                        self.matrix[int(self.ws)][int(self.wa)] = "·"
                     self.matrix[int(self.pl)][int(self.pls)] = ficha2
                 system('cls')
                 print('SIGUAN JUGADAS HASTA QUE QUEDEN 2 FICHAS')
                 ficha1.imprimir()
+                contadores1.contador_de_eliminaion()
         else:
             print('ESTA POSICION NO SE PUEDE')
             ficha1.verificaciones(nombre2,ficha2,ip)
         
             
-    def eleminar_fichas(self,l):
+    def eleminar_fichas(self,l,l1):
         s = self.matrix
         Fila_de_tres1 =  [[[s[0][0] == l],[s[0][3] == l],[s[0][6] == l]],
                           [[s[1][1] == l],[s[1][3] == l],[s[1][5] == l]],
@@ -290,17 +298,36 @@ class fichas(tablero):
                           [[s[2][4] == l],[s[3][4] == l],[s[4][4] == l]],
                           [[s[1][5] == l],[s[3][5] == l],[s[5][5] == l]],
                           [[s[0][6] == l],[s[3][6] == l],[s[6][6] == l]]]
-        pee = 0
-        while pee < len(Fila_de_tres1):
-            pee+=1
-            if Fila_de_tres1[0] == [[True], [True], [True]]:
-                print('Si funciona')
+        
+        for fila in Fila_de_tres1:
+            if [fila[0], fila[1], fila[2]]== [[True], [True], [True]]:
+                ficha1.elimanar_enemigo('●','○')
             else:
-                print(contadores1.contador_de_movimiento())
-
-
+                contadores1.contador_de_movimiento()
+                
+                
+    def elimanar_enemigo(self,l,l1):
+        self.qw = input('CUAL FILA DE TU ENEMIGO QUIERES ELIMINAR:')
+        self.qwe = input ('CUAL COLUNA DE TU ENEMIGO QUIERES ELIMINAR:')
+        if (self.qw not in self.verificacion or self.qwe not in self.verificacion or 
+            self.qw == '' or self.qwe == '' or self.qw == '\n' and self.qw == '\n'):
+            print('ESTA JUGADA ES INVALIDA')
+            ficha1.elimanar_enemigo('●','○')
+        else:
+            if self.matrix[int(self.qw)][int(self.qwe)] == l1 or " " + l1 + " ":
+                if self.matrix[int(self.qw)][int(self.qwe)] == " " + l1 + " ":
+                     self.matrix[int(self.qw)][int(self.qwe)] = " · "
+                else:
+                     self.matrix[int(self.qw)][int(self.qwe)] = "·"
+                system('cls')
+                print('SIGUAN JUGADAS HASTA QUE QUEDEN 2 FICHAS')
+                ficha1.imprimir()
+                contadores1.contador_de_movimiento()
+            else:
+                print('ESTA FICHA NO ES DE TU ENEMIGO')  
 
 class contador():
+    
     def contador_de_jugadas(self):
         c_jugador1 = 9
         c_jugador2 = 9
@@ -315,19 +342,30 @@ class contador():
                 c_jugador2-=1
                 
     def contador_de_movimiento(self):
-        m_jugador1 = 9
-        m_jugador2 = 9
+        m_jugador1 = 100
+        m_jugador2 = 100
         p = 0
         while p < 2:
             p+=1
             while m_jugador1 + 1 >  m_jugador2:
-                ficha1.verificaciones(z,'●',9)
+                ficha1.verificaciones(z,'●',100)
                 m_jugador1-=1
             while m_jugador2 > m_jugador1:
-                ficha1.verificaciones(ml,'○',9)
+                ficha1.verificaciones(ml,'○',100)
                 m_jugador2-=1
-
-
+                
+    def contador_de_eliminaion(self):
+        e_jugador1 = 100
+        e_jugador2 = 100
+        z1 = 0
+        while z1 < 100:
+            z1+=1 
+            while e_jugador1 + 1 >  e_jugador2:
+                ficha1.eleminar_fichas('●','○')
+                e_jugador1-=1
+            while e_jugador2 > e_jugador1:
+                ficha1.eleminar_fichas('●','○')
+                e_jugador2-=1
 
 
 
@@ -342,7 +380,8 @@ contadores1 = contador()
 estetica1.piesas()
 tablero1.imprimir()
 contadores1.contador_de_jugadas()
-ficha1.eleminar_fichas('●')
+ficha1.eleminar_fichas('●','○')
+contadores1.contador_de_movimiento()
 
                 
 
