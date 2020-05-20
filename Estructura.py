@@ -29,8 +29,8 @@ class tablero():
                 print(self.matrix[e][i],end=' ')
             print('')
         print("  "'0',' 1',' 2','3','4',' 5',' 6')
-# l = '●' or '○'
-# print(l)
+l = '●' or '○'
+print(l)
 class fichas(tablero): 
     def piezas_en_el_tablero(self,jugador1,nombre_jugador,po):
         self.lk = input('FILA DE : ' + nombre_jugador)
@@ -363,10 +363,10 @@ class contadores():
         while p < 100:
             p+=1
             while m_jugador1 +1 >  m_jugador2:
-                ficha1.verificaciones_de_eliminar(z,'●',100,'●','○',ml)
+                ficha1.verificaciones_de_eliminar(z,'●',100,l,'○',ml)
                 m_jugador1-=1
             while m_jugador2 > m_jugador1:
-                ficha1.verificaciones_de_eliminar(ml,'○',100,'○','●',z)
+                ficha1.verificaciones_de_eliminar(ml,'○',100,l,'●',z)
                 m_jugador2-=1
 
 
