@@ -80,13 +80,13 @@ class fichas(tablero):
             self.fila2 = [[True], [True], [True]]
             if l1 == '●':
                 if self.fila2 in self.Fila_de_tres3:
-                    ficha1.elimanar_enemigo(self,jugador1,nombre_jugador,po,l1,enemigo,ml)
+                    ficha1.elimanar_enemigo2(jugador1,nombre_jugador,po,l1,'○',ml)
                 else:
                     ficha1.piezas_en_el_tablero('○',ml,9,'○','●',z)
             else:
                 if l1 == '○':
                     if self.fila2 in self.Fila_de_tres3:
-                        ficha1.elimanar_enemigo(self,jugador1,nombre_jugador,po,l1,enemigo,z)
+                        ficha1.elimanar_enemigo2(jugador1,nombre_jugador,po,l1,'●',z)
                     else:
                         ficha1.piezas_en_el_tablero('●',z,9,'●','○',ml)
 
@@ -380,6 +380,42 @@ class fichas(tablero):
                 else:
                     print('ESTA FICHA NO ES DE TU ENEMIGO')  
                     ficha1.elimanar_enemigo(nombre2,ficha2,ip,l,ls,hj)
+                    
+                    
+    def elimanar_enemigo2(self,jugador1,nombre_jugador,po,l1,enemigo,nl):
+        self.dr = input('CUAL FILA DE '+ nl +' QUIERES ELIMINAR:')
+        self.dre = input ('CUAL COLUNA DE '+ nl + ' QUIERES ELIMINAR:')
+        if (self.dr not in self.verificacion or self.dre not in self.verificacion or 
+            self.dr == '' or self.dre == '' or self.dr == '\n' and self.dr == '\n'):
+            print('ESTA JUGADA ES INVALIDA')
+            ficha1.elimanar_enemigo2(jugador1,nombre_jugador,po,l1,enemigo,nl)
+        else:
+             if self.matrix[int(self.dr)][int(self.dre)] == " " + '●' + " " or self.matrix[int(self.dr)][int(self.dre)] ==  '●':
+                if self.matrix[int(self.dr)][int(self.dre)] == enemigo or self.matrix[int(self.dr)][int(self.dre)] == " " + enemigo + " ":
+                    if self.matrix[int(self.dr)][int(self.dre)] == " " + enemigo + " ":
+                        self.matrix[int(self.dr)][int(self.dre)] = " · "
+                    else:
+                        self.matrix[int(self.dr)][int(self.dre)] = "·"
+                    system('cls')
+                    print('SIGAN JUGADAS HASTA QUE QUEDEN 2 FICHAS')
+                    ficha1.imprimir()
+                    ficha1.piezas_en_el_tablero('●',z,9,'●','○',ml)
+                else:
+                    print('ESTA FICHA NO ES DE TU ENEMIGO')  
+                    ficha1.elimanar_enemigo2(jugador1,nombre_jugador,po,l1,enemigo,nl)
+             else:
+                if self.matrix[int(self.dr)][int(self.dre)] == enemigo or self.matrix[int(self.dr)][int(self.dre)] == " " + enemigo + " ":
+                    if self.matrix[int(self.dr)][int(self.dre)] == " " + enemigo + " ":
+                        self.matrix[int(self.dr)][int(self.dre)] = " · "
+                    else:
+                        self.matrix[int(self.dr)][int(self.dre)] = "·"
+                    system('cls')
+                    print('SIGAN JUGADAS HASTA QUE QUEDEN 2 FICHAS')
+                    ficha1.imprimir()
+                    ficha1.piezas_en_el_tablero('○',ml,9,'○','●',z)
+                else:
+                    print('ESTA FICHA NO ES DE TU ENEMIGO')  
+                    ficha1.elimanar_enemigo2(jugador1,nombre_jugador,po,l1,enemigo,nl)
 class contadores():
     def contador_de_jugadas(self):
         c_jugador1 = 9
