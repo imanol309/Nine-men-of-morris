@@ -5,6 +5,8 @@ ml = input("Nombre del jugador2:")
 system("cls")
 
 
+
+
 class estetica():
     def piesas(self):
         print ('PIESAS DE ' + z +" = ●●●●●●●●●")
@@ -22,7 +24,8 @@ class tablero():
         self.matrix = [self.a,self.b,self.c,self.d,self.e,self.f,self.g]
         self.verificacion = "0123456"
         self.jugadas_posibles = ('00','03','06','11','13','15','22','23','24','30','31','32','34','35','36','42','43','44','51','53','55','60','63','66')
-        
+        self.io = '◍'
+        self.iop = "◌"
     def imprimir(self):
         r = 0
         for e in range(0,len(self.matrix)):
@@ -56,8 +59,7 @@ class fichas(tablero):
                     ficha1.eliminar(jugador1,nombre_jugador,po,l1,enemigo,nl)
                 else:
                     if l1 == '○':
-                        ficha1.eliminar(jugador1,nombre_jugador,po,l1,enemigo,nl)
-                            
+                        ficha1.eliminar(jugador1,nombre_jugador,po,l1,enemigo,nl)    
             else:
                 print('JUGADA INVALIDA')
                 ficha1.piezas_en_el_tablero(jugador1,nombre_jugador,po,l1,enemigo,nl) 
@@ -80,14 +82,38 @@ class fichas(tablero):
                                 [[o1[2][4] == l1],[o1[3][4] == l1],[o1[4][4] == l1]],
                                 [[o1[1][5] == l1],[o1[3][5] == l1],[o1[5][5] == l1]],
                                 [[o1[0][6] == l1],[o1[3][6] == l1],[o1[6][6] == l1]]]
+            
             self.fila2 = [[True], [True], [True]]
             if l1 == '●':
                 if self.fila2 in self.Fila_de_tres3:
+                    self.matrix[int(self.lk)][int(self.lj)] = self.io
                     ficha1.elimanar_enemigo2(jugador1,nombre_jugador,po,l1,enemigo,nl)
             else:
                 if l1 == '○':
                     if self.fila2 in self.Fila_de_tres3:
+                        self.matrix[int(self.lk)][int(self.lj)] = self.iop
                         ficha1.elimanar_enemigo2(jugador1,nombre_jugador,po,l1,enemigo,nl)
+
+    def elimanar_enemigo2(self,jugador1,nombre_jugador,po,l1,enemigo,nl):
+        self.dr = input('CUAL FILA DE '+ nl +' QUIERES ELIMINAR:')
+        self.dre = input ('CUAL COLUNA DE '+ nl + ' QUIERES ELIMINAR:')
+        if (self.dr not in self.verificacion or self.dre not in self.verificacion or 
+            self.dr == '' or self.dre == '' or self.dr == '\n' and self.dr == '\n'):
+            print('ESTA JUGADA ES INVALIDA')
+            ficha1.elimanar_enemigo2(jugador1,nombre_jugador,po,l1,enemigo,nl)
+        else:
+            if self.matrix[int(self.dr)][int(self.dre)] == enemigo or self.matrix[int(self.dr)][int(self.dre)] == " " + enemigo + " ":
+                if self.matrix[int(self.dr)][int(self.dre)] == " " + enemigo + " ":
+                    self.matrix[int(self.dr)][int(self.dre)] = " · "
+                else:
+                    self.matrix[int(self.dr)][int(self.dre)] = "·"
+                system('cls')
+                print('SIGAN JUGADAS HASTA QUE QUEDEN 2 FICHAS')
+                ficha1.imprimir()
+            else:
+                print('ESTA FICHA NO ES DE TU ENEMIGO')  
+                ficha1.elimanar_enemigo2(jugador1,nombre_jugador,po,l1,enemigo,nl)
+
 
     def verificaciones(self,nombre2,ficha2,ip,l,ls,hj):
             print('juega ' + nombre2 + ' = ' + ficha2)
@@ -99,17 +125,33 @@ class fichas(tablero):
                 ficha1.verificaciones(nombre2,ficha2,ip,l,ls,hj)
             else:
                 self.t = self.ws + self.wa
-                if self.t in self.jugadas_posibles:
-                    if self.matrix[int(self.ws)][int(self.wa)] == ficha2 or self.matrix[int(self.ws)][int(self.wa)] == " " + ficha2 + " ":
-                        print('ESTA PIESA SI ES TUYA')
-                        ficha1.posiciones_de_movimientos(nombre2,ficha2,ip,l,ls,hj)
+                if ficha2 == '●':
+                    if self.t in self.jugadas_posibles:
+                        if (self.matrix[int(self.ws)][int(self.wa)] == ficha2 or self.matrix[int(self.ws)][int(self.wa)] == " " + ficha2 + " " or
+                            self.matrix[int(self.ws)][int(self.wa)] == self.io or self.matrix[int(self.ws)][int(self.wa)] == " " + self.io + " "):
+                            self.io = ficha2
+                            print('ESTA PIESA SI ES TUYA')
+                            ficha1.posiciones_de_movimientos(nombre2,ficha2,ip,l,ls,hj)
+                        else:
+                            print('ESTA FICHA NO ES TUYA')
+                            ficha1.verificaciones(nombre2,ficha2,ip,l,ls,hj)
                     else:
-                        print('ESTA FICHA NO ES TUYA')
+                        print('ESTA POSICION NO EXISTE O NO ES PERMITIDAD')
                         ficha1.verificaciones(nombre2,ficha2,ip,l,ls,hj)
                 else:
-                    print('ESTA POSICION NO EXISTE O NO ES PERMITIDAD')
-                    ficha1.verificaciones(nombre2,ficha2,ip,l,ls,hj)
-            
+                    if self.t in self.jugadas_posibles:
+                       if (self.matrix[int(self.ws)][int(self.wa)] == ficha2 or self.matrix[int(self.ws)][int(self.wa)] == " " + ficha2 + " " or
+                            self.matrix[int(self.ws)][int(self.wa)] == self.iop or self.matrix[int(self.ws)][int(self.wa)] == " " + self.iop + " "):
+                            print('ESTA PIESA SI ES TUYA')
+                            self.iop == ficha2
+                            ficha1.posiciones_de_movimientos(nombre2,ficha2,ip,l,ls,hj)
+                       else:
+                            print('ESTA FICHA NO ES TUYA')
+                            ficha1.verificaciones(nombre2,ficha2,ip,l,ls,hj)
+                    else:
+                        print('ESTA POSICION NO EXISTE O NO ES PERMITIDAD')
+                        ficha1.verificaciones(nombre2,ficha2,ip,l,ls,hj)
+                        
     def verificaciones_de_eliminar(self,nombre2,ficha2,ip,l,ls,hj):
         s = self.matrix
         self.Fila_de_tres1 =  [[[s[0][0] == l],[s[0][3] == l],[s[0][6] == l]],
@@ -131,13 +173,21 @@ class fichas(tablero):
         self.fila = [[True], [True], [True]]
         if l == '●':
                 if self.fila in self.Fila_de_tres1:
+                    if self.t == '31' or self.t == '35': 
+                        self.matrix[int(self.ws)][int(self.wa)] ==  " " + self.io + " " 
+                    else:
+                        self.matrix[int(self.ws)][int(self.wa)] == self.io
                     ficha1.elimanar_enemigo(nombre2,ficha2,ip,l,'○',ml)
                 else:
                     ficha1.verificaciones(ml,'○',100,'○','●',z)
         else:
             if l == '○':
                 if self.fila in self.Fila_de_tres1:
-                        ficha1.elimanar_enemigo(nombre2,ficha2,ip,l,'●',z)
+                    if self.t == '31' or self.t == '35': 
+                        self.matrix[int(self.ws)][int(self.wa)] ==  " " + self.iop + " " 
+                    else:
+                        self.matrix[int(self.ws)][int(self.wa)] == self.iop
+                    ficha1.elimanar_enemigo(nombre2,ficha2,ip,l,'●',z)
                 else:
                         ficha1.verificaciones(z,'●',100,'●','○',ml)
               
@@ -256,7 +306,7 @@ class fichas(tablero):
                 ficha1.verificaciones(nombre2,ficha2,ip,l,ls,hj)
                 
         if self.t == '43' :
-            if p == '42' or p == '45' or p == '53':
+            if p == '42' or p == '45' or p == '53' or p == '44':
                 ficha1.imprimidor(nombre2,ficha2,ip,l,ls,hj)
             else:
                 print('Esta jugada no se puede')
@@ -381,38 +431,7 @@ class fichas(tablero):
                     ficha1.elimanar_enemigo(nombre2,ficha2,ip,l,ls,hj)
 
                     
-    def elimanar_enemigo2(self,jugador1,nombre_jugador,po,l1,enemigo,nl):
-        self.dr = input('CUAL FILA DE '+ nl +' QUIERES ELIMINAR:')
-        self.dre = input ('CUAL COLUNA DE '+ nl + ' QUIERES ELIMINAR:')
-        if (self.dr not in self.verificacion or self.dre not in self.verificacion or 
-            self.dr == '' or self.dre == '' or self.dr == '\n' and self.dr == '\n'):
-            print('ESTA JUGADA ES INVALIDA')
-            ficha1.elimanar_enemigo2(jugador1,nombre_jugador,po,l1,enemigo,nl)
-        else:
-             if self.matrix[int(self.dr)][int(self.dre)] == " " + '●' + " " or self.matrix[int(self.dr)][int(self.dre)] ==  '●':
-                if self.matrix[int(self.dr)][int(self.dre)] == enemigo or self.matrix[int(self.dr)][int(self.dre)] == " " + enemigo + " ":
-                    if self.matrix[int(self.dr)][int(self.dre)] == " " + enemigo + " ":
-                        self.matrix[int(self.dr)][int(self.dre)] = " · "
-                    else:
-                        self.matrix[int(self.dr)][int(self.dre)] = "·"
-                    system('cls')
-                    print('SIGAN JUGADAS HASTA QUE QUEDEN 2 FICHAS')
-                    ficha1.imprimir()
-                else:
-                    print('ESTA FICHA NO ES DE TU ENEMIGO')  
-                    ficha1.elimanar_enemigo2(jugador1,nombre_jugador,po,l1,enemigo,nl)
-             else:
-                if self.matrix[int(self.dr)][int(self.dre)] == enemigo or self.matrix[int(self.dr)][int(self.dre)] == " " + enemigo + " ":
-                    if self.matrix[int(self.dr)][int(self.dre)] == " " + enemigo + " ":
-                        self.matrix[int(self.dr)][int(self.dre)] = " · "
-                    else:
-                        self.matrix[int(self.dr)][int(self.dre)] = "·"
-                    system('cls')
-                    print('SIGAN JUGADAS HASTA QUE QUEDEN 2 FICHAS')
-                    ficha1.imprimir()
-                else:
-                    print('ESTA FICHA NO ES DE TU ENEMIGO')  
-                    ficha1.elimanar_enemigo2(jugador1,nombre_jugador,po,l1,enemigo,nl)
+
 class contadores():
     def contador_de_jugadas(self):
         c_jugador1 = 9
