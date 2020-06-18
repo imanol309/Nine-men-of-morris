@@ -238,7 +238,11 @@ class fichas(tablero):
                             self.matrix[int(self.dr)][int(self.dre)] = "·"
                         system('cls')
                         print('SIGAN JUGADAS HASTA QUE QUEDEN 2 FICHAS')
-                        ficha1.imprimir()
+                        self.numero_blanca = self.numero_blanca + 1
+                        if self.numero_blanca == 6:
+                            ficha1.funcion_jugadores(nombre2,ficha2,ip,l,ls,hj,ppp)
+                        else:                                                          
+                            ficha1.imprimir()
                     else:
                         print('ESTA FICHA NO ES DE TU ENEMIGO')  
                         ficha1.elimanar_enemigo2(jugador1,nombre_jugador,po,l1,enemigo,nl,pp)
@@ -250,7 +254,11 @@ class fichas(tablero):
                             self.matrix[int(self.dr)][int(self.dre)] = "·"
                         system('cls')
                         print('SIGAN JUGADAS HASTA QUE QUEDEN 2 FICHAS')
-                        ficha1.imprimir()
+                        self.numero_negra = self.numero_negra + 1
+                        if self.numero_negra == 6:
+                            ficha1.funcion_jugadores(nombre2,ficha2,ip,l,ls,hj,ppp)
+                        else:                                                          
+                            ficha1.imprimir()
                     else:
                         print('ESTA FICHA NO ES DE TU ENEMIGO')  
                         ficha1.elimanar_enemigo2(jugador1,nombre_jugador,po,l1,enemigo,nl,pp)
@@ -638,8 +646,14 @@ class fichas(tablero):
                     ficha1.elimanar_enemigo(nombre2,ficha2,ip,l,ls,hj,ppp)
         else:
             if l == '●':
+                if self.numero_negra == 1:
+                    ficha1.funcion_jugadores(nombre2,ficha2,ip,l,ls,hj,ppp)
+                else:
                     ficha1.verificaciones(ml,'○',100,'○','●',z,self.iopp)
             else:
+                if self.numero_blanca == 1:
+                    ficha1.funcion_jugadores(nombre2,ficha2,ip,l,ls,hj,ppp)
+                else:
                     ficha1.verificaciones(z,'●',100,'●','○',ml,self.ioo)
 
     def elimanar_enemigo(self,nombre2,ficha2,ip,l,ls,hj,ppp):
@@ -671,9 +685,13 @@ class fichas(tablero):
                         system('cls')
                         print('SIGAN JUGADAS HASTA QUE QUEDEN 2 FICHAS')
                         self.numero_blanca = self.numero_blanca + 1
-                        print(self.numero_blanca)
-                        ficha1.imprimir()
-                        ficha1.verificaciones(z,'●',100,'●','○',ml,self.ioo)
+                        if self.numero_blanca == 1:
+                            print('TE QUEDA 3 FICHAS PUEDES MOVERTE DONDE QUIERAS')
+                            ficha1.imprimir()
+                            ficha1.funcion_jugadores(z,'●',100,'●','○',ml,self.ioo)
+                        else:                                                          
+                            ficha1.imprimir()
+                            ficha1.verificaciones(z,'●',100,'●','○',ml,self.ioo)
                 else:
                     print('ESTA FICHA NO ES DE TU ENEMIGO')  
                     ficha1.elimanar_enemigo(nombre2,ficha2,ip,l,ls,hj,ppp)
@@ -697,28 +715,80 @@ class fichas(tablero):
                         system('cls')
                         print('SIGAN JUGADAS HASTA QUE QUEDEN 2 FICHAS')
                         self.numero_negra = self.numero_negra + 1
-                        print(self.numero_negra)
-                        ficha1.imprimir()
-                        ficha1.verificaciones(ml,'○',100,'○','●',z,self.iopp)
+                        if self.numero_negra == 1:
+                            ficha1.imprimir()
+                            print('TE QUEDA 3 FICHAS PUEDES MOVERTE DONDE QUIERAS')
+                            ficha1.funcion_jugadores(ml,'○',100,'○','●',z,self.iopp)
+                        else:                                                          
+                            ficha1.imprimir()
+                            ficha1.verificaciones(ml,'○',100,'○','●',z,self.iopp)
                 else:
                     print('ESTA FICHA NO ES DE TU ENEMIGO')  
                     ficha1.elimanar_enemigo(nombre2,ficha2,ip,l,ls,hj,ppp)
 
-    # def funcion_ganadora(self,nombre2,ficha2,ip,l,ls,hj,ppp):      
-    #     o1 = self.matrix 
-    #     self.fi =[[o1[0][0]],[o1[0][3]],[o1[0][6]],
-    #              [o1[1][1]],[o1[1][3]],[o1[1][5]],
-    #              [o1[2][2]],[o1[2][3]],[o1[2][4]],
-    #              [o1[3][0]],[o1[3][1]],[o1[3][2]],
-    #              [o1[3][4]],[o1[3][5]],[o1[3][6]],
-    #              [o1[4][2]],[o1[4][3]],[o1[4][4]],
-    #              [o1[5][1]],[o1[5][3]],[o1[5][5]],
-    #              [o1[6][0]],[o1[6][3]],[o1[6][6]]]
-    #     ganador1 = [['●'],['●']]
-    #     for ei in self.fi:
-    #         print(ei) 
-            
-                  
+    def funcion_jugadores(self,nombre2,ficha2,ip,l,ls,hj,ppp):      
+        print('juega ' + nombre2 + ' = ' + ficha2)
+        self.wss = input('LA FILA DE '+ nombre2 + ' QUE TU QUIERES MOVER:')
+        self.waa = input('LA COLUNA DE ' + nombre2 + ' QUE TU QUIERES MOVER:')
+        if (self.wss not in self.verificacion or self.waa not in self.verificacion or 
+            self.wss == '' or self.waa == '' or self.wss == '\n' and self.wss== '\n'):
+            print('ESTA JUGADA ES INVALIDA')
+            ficha1.funcion_jugadores(nombre2,ficha2,ip,l,ls,hj,ppp)
+        else:
+            self.t = self.wss + self.waa
+            if ficha2 == '●':
+                if self.t in self.jugadas_posibles:
+                    if (self.matrix[int(self.wss)][int(self.waa)] == ficha2 or self.matrix[int(self.wss)][int(self.waa)] == " " + ficha2 + " " or
+                        self.matrix[int(self.wss)][int(self.waa)] == self.ioo or self.matrix[int(self.wss)][int(self.waa)] == " " + self.ioo + " "):
+                        self.io = ficha2
+                        
+                        print('ESTA PIESA SI ES TUYA')
+                        ficha1.imprimir_de_tres(nombre2,ficha2,ip,l,ls,hj,ppp)
+                    else:
+                        print('ESTA FICHA NO ES TUYA')
+                        ficha1.funcion_jugadores(nombre2,ficha2,ip,l,ls,hj,ppp)
+                else:
+                    print('ESTA POSICION NO EXISTE O NO ES PERMITIDAD')
+                    ficha1.funcion_jugadores(nombre2,ficha2,ip,l,ls,hj,ppp)
+            else:
+                if self.t in self.jugadas_posibles:
+                    if (self.matrix[int(self.wss)][int(self.waa)] == ficha2 or self.matrix[int(self.wss)][int(self.waa)] == " " + ficha2 + " " or
+                        self.matrix[int(self.wss)][int(self.waa)] == self.iopp or self.matrix[int(self.wss)][int(self.waa)] == " " + self.iopp + " "):
+                        print('ESTA PIESA SI ES TUYA')
+                        self.iop == ficha2
+                        ficha1.imprimir_de_tres(nombre2,ficha2,ip,l,ls,hj,ppp)
+                    else:
+                        print('ESTA FICHA NO ES TUYA')
+                        ficha1.funcion_jugadores(nombre2,ficha2,ip,l,ls,hj,ppp)
+                else:
+                    print('ESTA POSICION NO EXISTE O NO ES PERMITIDAD')
+                    ficha1.funcion_jugadores(nombre2,ficha2,ip,l,ls,hj,ppp)
+    def imprimir_de_tres(self,nombre2,ficha2,ip,l,ls,hj,ppp): 
+         
+        self.pll = input('A CUAL FILA LA QUIERES MOVER:')
+        self.plss = input('A CUAL COLUNA LA QUIERES MOVER:') 
+        if self.matrix[int(self.pll)][int(self.plss)] == "·" or self.matrix[int(self.pll)][int(self.plss)] == " · ":
+                if self.matrix[int(self.pll)][int(self.plss)] == " · ":
+                    if self.t == '31' or self.t == '35': 
+                        self.matrix[int(self.wss)][int(self.waa)] = " · "
+                    else:
+                        self.matrix[int(self.wss)][int(self.waa)] = "·"
+                    self.matrix[int(self.pll)][int(self.plss)] = " " + ficha2 + " "
+                else:
+                    if self.t == '31' or self.t == '35': 
+                        self.matrix[int(self.wss)][int(self.waa)] = " · "
+                    else:
+                        self.matrix[int(self.wss)][int(self.waa)] = "·"
+                    self.matrix[int(self.pll)][int(self.plss)] = ficha2
+                system('cls')  
+                print('SIGUAN JUGADAS HASTA QUE QUEDEN 2 FICHAS')
+                ficha1.imprimir()
+                # ficha1.funcion_ganadora(nombre2,ficha2,ip,l,ls,hj,ppp)
+                if l == '●':
+                    ficha1.verificaciones_de_eliminar(z,'●',100,'●','○',ml,self.ioo)
+                else:
+                   if l == '○':
+                        ficha1.verificaciones_de_eliminar(ml,'○',100,'○','●',z,self.iopp)     
             
 class contadores(tablero):
     def contador_de_jugadas(self):
