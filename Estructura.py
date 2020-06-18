@@ -25,6 +25,8 @@ class tablero():
         self.iop = "◌"
         self.ioo = '◍'
         self.iopp = "◌"
+        self.numero_blanca = 0
+        self.numero_negra = 0
     def imprimir(self):
         r = 0
         for e in range(0,len(self.matrix)):
@@ -488,6 +490,7 @@ class fichas(tablero):
                 system('cls')  
                 print('SIGUAN JUGADAS HASTA QUE QUEDEN 2 FICHAS')
                 ficha1.imprimir()
+                # ficha1.funcion_ganadora(nombre2,ficha2,ip,l,ls,hj,ppp)
                 if l == '●':
                     ficha1.verificaciones_de_eliminar(z,'●',100,'●','○',ml,self.ioo)
                 else:
@@ -640,8 +643,6 @@ class fichas(tablero):
                     ficha1.verificaciones(z,'●',100,'●','○',ml,self.ioo)
 
     def elimanar_enemigo(self,nombre2,ficha2,ip,l,ls,hj,ppp):
-    
-       
         self.qw = input('CUAL FILA DE '+ hj +' QUIERES ELIMINAR:')
         self.qwe = input ('CUAL COLUNA DE '+ hj + ' QUIERES ELIMINAR:')
         if (self.qw not in self.verificacion or self.qwe not in self.verificacion or 
@@ -669,6 +670,8 @@ class fichas(tablero):
                                 self.matrix[int(self.pl)][int(self.pls)] = self.iopp
                         system('cls')
                         print('SIGAN JUGADAS HASTA QUE QUEDEN 2 FICHAS')
+                        self.numero_blanca = self.numero_blanca + 1
+                        print(self.numero_blanca)
                         ficha1.imprimir()
                         ficha1.verificaciones(z,'●',100,'●','○',ml,self.ioo)
                 else:
@@ -693,32 +696,30 @@ class fichas(tablero):
                                 self.matrix[int(self.pl)][int(self.pls)] = self.iopp
                         system('cls')
                         print('SIGAN JUGADAS HASTA QUE QUEDEN 2 FICHAS')
+                        self.numero_negra = self.numero_negra + 1
+                        print(self.numero_negra)
                         ficha1.imprimir()
                         ficha1.verificaciones(ml,'○',100,'○','●',z,self.iopp)
                 else:
                     print('ESTA FICHA NO ES DE TU ENEMIGO')  
                     ficha1.elimanar_enemigo(nombre2,ficha2,ip,l,ls,hj,ppp)
 
-    def funcion_ganadora(self,nombre2,ficha2,ip,l,ls,hj,ppp):      
-        o1 = self.matrix 
-        self.F =[[o1[0][0] == l],[o1[0][3] == l],[o1[0][6] == l],
-                [o1[1][1] == l],[o1[1][3] == l],[o1[1][5] == l],
-                [o1[2][2] == l],[o1[2][3] == l],[o1[2][4] == l],
-                [o1[3][0] == l],[o1[3][1] == l],[o1[3][2] == l],
-                [o1[3][4] == l],[o1[3][5] == l],[o1[3][6] == l],
-                [o1[4][2] == l],[o1[4][3] == l],[o1[4][4] == l],
-                [o1[5][1] == l],[o1[5][3] == l],[o1[5][5] == l],
-                [o1[6][0] == l],[o1[6][3] == l],[o1[6][6] == l],
-                [o1[0][0] == l],[o1[3][0] == l],[o1[6][0] == l],
-                [o1[1][1] == l],[o1[3][1] == l],[o1[5][1] == l],
-                [o1[2][2] == l],[o1[3][2] == l],[o1[4][2] == l],
-                [o1[0][3] == l],[o1[1][3] == l],[o1[2][3] == l],
-                [o1[4][3] == l],[o1[5][3] == l],[o1[6][3] == l],
-                [o1[2][4] == l],[o1[3][4] == l],[o1[4][4] == l],
-                [o1[1][5] == l],[o1[3][5] == l],[o1[5][5] == l],
-                [o1[0][6] == l],[o1[3][6] == l],[o1[6][6]] == l]
-        
-        ganador1 = [[True],[True]]    
+    # def funcion_ganadora(self,nombre2,ficha2,ip,l,ls,hj,ppp):      
+    #     o1 = self.matrix 
+    #     self.fi =[[o1[0][0]],[o1[0][3]],[o1[0][6]],
+    #              [o1[1][1]],[o1[1][3]],[o1[1][5]],
+    #              [o1[2][2]],[o1[2][3]],[o1[2][4]],
+    #              [o1[3][0]],[o1[3][1]],[o1[3][2]],
+    #              [o1[3][4]],[o1[3][5]],[o1[3][6]],
+    #              [o1[4][2]],[o1[4][3]],[o1[4][4]],
+    #              [o1[5][1]],[o1[5][3]],[o1[5][5]],
+    #              [o1[6][0]],[o1[6][3]],[o1[6][6]]]
+    #     ganador1 = [['●'],['●']]
+    #     for ei in self.fi:
+    #         print(ei) 
+            
+                  
+            
 class contadores(tablero):
     def contador_de_jugadas(self):
         c_jugador1 = 9
