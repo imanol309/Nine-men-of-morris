@@ -20,7 +20,6 @@ class Estetica():
 
 #La clase Tablero es donde estan almacenados algunas variables muy importantes y la creacion del tablero del juego.
 class Tablero():
-    
     def __init__(self):
         self.a = ["·","——","——","·","——","——","·"]
         self.b = ["| ","·","——","·","——","·"," |"]
@@ -503,7 +502,6 @@ class Fichas(Tablero):
 
     #Esta funcion solo existe para imprimir las fichas que tu moviste y hacelo correctamente si errores por eso se llama Imprimidor.
     def Imprimidor(self,nombre2,ficha2,ip,l,ls,hj,ppp):
-        
         if self.matrix[int(self.pl)][int(self.pls)] == "·" or self.matrix[int(self.pl)][int(self.pls)] == " · ":
                 if self.matrix[int(self.pl)][int(self.pls)] == " · ":
                     if self.t == '31' or self.t == '35': 
@@ -528,8 +526,6 @@ class Fichas(Tablero):
         else:
             print('THIS POSITION CANNOT BE')
             Ficha1.Verificaciones(nombre2,ficha2,ip,l,ls,hj,ppp)
-      
-      
     #Esta funcion esta creada para comprobar si hay un molino (si existe 3 fichas en linias de un mismo jugador)si hay un molino lo
     #enviara a la funcion Eliminar_enemigo2 para eliminar la ficha contraria.        
     def Verificaciones_de_Eliminar(self,nombre2,ficha2,ip,l,ls,hj,ppp): 
@@ -841,11 +837,10 @@ class Contadores(Tablero):
     
     #Esta funcion esta creada para darle los 9 turnos de los dos jugadores que tienen para plasmar su fichas y que no pasen de 9 cada uno porque solamente esta permitido 9 fichas por jugadores.
     def Contador_de_jugadas(self):
-                
-        c_jugador1 = 9
-        c_jugador2 = 9
+        c_jugador1 = 4
+        c_jugador2 = 4
         i = 0 
-        while i < 9:
+        while i < 4:
             i+=1
             while c_jugador1 + 1 >  c_jugador2:
                 Ficha1.Piezas_en_el_Tablero('●',z,9,'●','○',ml,self.io)
