@@ -1,5 +1,3 @@
-#Estas son algunas librerias que estoy utilizando en el programa...
-#una es para limpiar el terminal y el otro es para finalizar el programa donde sea.
 from os import system
 import sys
 
