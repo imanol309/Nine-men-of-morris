@@ -1,20 +1,17 @@
 from os import system
 import sys
 
-
 z = input("Player's name1:")
 ml = input("Player's name2:")
 blanca = 0
 negra1 = 0
 system("cls")
 
-
 class Estetica():
    
     def Piesas(self):
         print ('Pieces of ' + z +" = ●●●●●●●●●")
         print('Pieces of ' + ml +" = ○○○○○○○○○")
-
 
 class Tablero():
     
