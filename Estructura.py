@@ -1,24 +1,21 @@
-#Estas son algunas librerias que estoy utilizando en el programa...
-#una es para limpiar el terminal y el otro es para finalizar el programa donde sea.
 from os import system
 import sys
 
-#Estas son algunas variables que la tengo globar porque la utiliso en casi todas las funciones y por eso estan globales.
+
 z = input("Player's name1:")
 ml = input("Player's name2:")
 blanca = 0
 negra1 = 0
 system("cls")
 
-#Esta clase llamada Estetica la utiliso para darle algunos toques al programa para que el jugador lo pueda entender mas rapido... 
-#y se sienta comodo al momento de jugar.
+
 class Estetica():
-    #La funcion Piesas es donde estan todas las piesas de los dos jugadores.
+   
     def Piesas(self):
         print ('Pieces of ' + z +" = ●●●●●●●●●")
         print('Pieces of ' + ml +" = ○○○○○○○○○")
 
-#La clase Tablero es donde estan almacenados algunas variables muy importantes y la creacion del tablero del juego.
+
 class Tablero():
     
     def __init__(self):
@@ -50,10 +47,7 @@ class Tablero():
         print("  "'0',' 1',' 2','3','4',' 5',' 6')
         
 class Fichas(Tablero):
-#ESTA PARTE ES SOBRE LAS FUNCIONES DE PLASMAR LAS Fichas EN EL Tablero.
 
-    #Esta funcion es simplemente para plasmar las 18 fichas de los jugadores y esta funcion hay diferentes condiciones..
-    #que tiene que cumplis los jugadores para poder plasmar su fichas.
     def Piezas_en_el_Tablero(self,jugador1,nombre_jugador,po,l1,enemigo,nl,pp):
         self.lk = input('ROW OF : ' + nombre_jugador)
         self.lj= input('COLUNA OF : '+ nombre_jugador)
@@ -80,12 +74,9 @@ class Fichas(Tablero):
                 print('INVALID PLAY')
                 Ficha1.Piezas_en_el_Tablero(jugador1,nombre_jugador,po,l1,enemigo,nl,pp)
                  
-    #Esta funcion esta creada para comprobar si hay un molino (si existe 3 fichas en linias de un mismo jugador)si hay un molino lo
-    #enviara a la funcion Eliminar_enemigo2 para eliminar la ficha contraria.
+
     def Eliminar(self,jugador1,nombre_jugador,po,l1,enemigo,nl,pp):
-            o1 = self.matrix    
-            # self.Fia =[o1[0][0]],[o1[0][3]],[o1[0][6]]
-            # print(self.Fia)        
+            o1 = self.matrix     
             self.F =[[[o1[0][0]],[o1[0][3]],[o1[0][6]]],
                         [[o1[1][1]],[o1[1][3]],[o1[1][5]]],
                         [[o1[2][2]],[o1[2][3]],[o1[2][4]]],
@@ -103,7 +94,7 @@ class Fichas(Tablero):
                         [[o1[1][5]],[o1[3][5]],[o1[5][5]]],
                         [[o1[0][6]],[o1[3][6]],[o1[6][6]]]]
             
-            # if o1[int[self.lk]][int[self.lj]] != "·" or o1[int[self.lk]][int[self.lj]] != " · ":
+           
             if l1 == '●' or l1 == '○': 
                 self.fila2 = [[l1], [l1], [l1]]
                 self.fila4 = [[pp], [l1], [l1]]
@@ -228,7 +219,6 @@ class Fichas(Tablero):
                         o1[6][6] = pp    
                         Ficha1.Elimanar_enemigo2(jugador1,nombre_jugador,po,l1,enemigo,nl,pp)
 
-    #la funcion Eliminar_enemigo2 esta creada solo para eliminar una ficha de los dos jugadores si uno de ellos creo un molino.
     def Elimanar_enemigo2(self,jugador1,nombre_jugador,po,l1,enemigo,nl,pp):
         global blanca
         global negra1
@@ -281,9 +271,7 @@ class Fichas(Tablero):
                         print('THIS SHEET IS NOT YOUR ENEMY')  
                         Ficha1.Elimanar_enemigo2(jugador1,nombre_jugador,po,l1,enemigo,nl,pp)
 
-#ESTA PARTE ES SOBRE LAS FUNCIONES DE MOVIMIENTOS DEL JUEGO Y ALGUNAS DE ELIMINACION.
 
-    #Esta funcion esta creada para comenzar a mover las fichas de los jugadores correctamente por el tablero.
     def Verificaciones(self,nombre2,ficha2,ip,l,ls,hj,ppp):
         print('play ' + nombre2 + ' = ' + ficha2)
         self.ws = input('THE ROW OF '+ nombre2 + ' WHAT DO YOU WANT TO MOVE:')
@@ -321,8 +309,6 @@ class Fichas(Tablero):
                     print('THIS POSITION DOES NOT EXIST OR IS NOT PERMITTED')
                     Ficha1.Verificaciones(nombre2,ficha2,ip,l,ls,hj,ppp)
 
-    #Esta es una de las funciones mas importantes y indispensable del programa porque es la que comprueba si los movimientos de los jugadores son correctos 
-    #y son exactos.
     def Posiciones_de_movimientos(self,nombre2,ficha2,ip,l,ls,hj,ppp): 
         print('play ' + nombre2 + ' = ' + ficha2)
         self.pl = input('WHICH RANGE DO YOU WANT TO MOVE:')
@@ -501,7 +487,6 @@ class Fichas(Tablero):
                 print('This move cannot')
                 Ficha1.Verificaciones(nombre2,ficha2,ip,l,ls,hj,ppp)
 
-    #Esta funcion solo existe para imprimir las fichas que tu moviste y hacelo correctamente si errores por eso se llama Imprimidor.
     def Imprimidor(self,nombre2,ficha2,ip,l,ls,hj,ppp):
         
         if self.matrix[int(self.pl)][int(self.pls)] == "·" or self.matrix[int(self.pl)][int(self.pls)] == " · ":
@@ -523,15 +508,12 @@ class Fichas(Tablero):
                 if l == '●':
                     Ficha1.Verificaciones_de_Eliminar(z,'●',100,'●','○',ml,self.ioo)
                 else:
-                   if l == '○':
+                    if l == '○':
                         Ficha1.Verificaciones_de_Eliminar(ml,'○',100,'○','●',z,self.iopp)
         else:
             print('THIS POSITION CANNOT BE')
             Ficha1.Verificaciones(nombre2,ficha2,ip,l,ls,hj,ppp)
-      
-      
-    #Esta funcion esta creada para comprobar si hay un molino (si existe 3 fichas en linias de un mismo jugador)si hay un molino lo
-    #enviara a la funcion Eliminar_enemigo2 para eliminar la ficha contraria.        
+
     def Verificaciones_de_Eliminar(self,nombre2,ficha2,ip,l,ls,hj,ppp): 
         global blanca
         global negra1
@@ -693,7 +675,6 @@ class Fichas(Tablero):
                         Ficha1.Imprimir()
                         Ficha1.Verificaciones(z,'●',100,'●','○',ml,self.ioo)
 
-    #la funcion Eliminar_enemigo esta creada solo para eliminar una ficha de los dos jugadores si uno de ellos creo un molino.
     def Elimanar_enemigo(self,nombre2,ficha2,ip,l,ls,hj,ppp):
         global blanca
         global negra1
@@ -770,7 +751,6 @@ class Fichas(Tablero):
                     print('THIS SHEET IS NOT YOUR ENEMY')  
                     Ficha1.Elimanar_enemigo(nombre2,ficha2,ip,l,ls,hj,ppp)
 
-    #Esta funcion esta creada para cuando uno de los dos jugadores tenga 3 fichas se puedan mover libremente por el tablero sin ningun impedimento, solo esta funcion se ejecutara cuando tengan 3 ficha cualquier jugador solamente hay. 
     def Funcion_jugadores(self,nombre2,ficha2,ip,l,ls,hj,ppp):      
         print('play ' + nombre2 + ' = ' + ficha2)
         self.wss = input('THE ROW OF '+ nombre2 + ' WHAT DO YOU WANT TO MOVE:')
@@ -809,7 +789,6 @@ class Fichas(Tablero):
                     print('THIS POSITION DOES NOT EXIST OR IS NOT PERMITTED')
                     Ficha1.Funcion_jugadores(nombre2,ficha2,ip,l,ls,hj,ppp)
 
-    # Y la ultima funcion de la clase Fichas es la que imprime las fichas de los jugadores que tiene 3 fichas solamente esta creada para eso.
     def Imprimir_de_tres(self,nombre2,ficha2,ip,l,ls,hj,ppp): 
         self.pll = input('WHICH RANGE DO YOU WANT TO MOVE:')
         self.plss = input('TO WHICH COLUNA DO YOU WANT TO MOVE:') 
@@ -829,17 +808,14 @@ class Fichas(Tablero):
                 system('cls')  
                 print('KEEP PLAYING UNTIL 2 TABS REMAIN')
                 Ficha1.Imprimir()
-                # Ficha1.funcion_ganadora(nombre2,ficha2,ip,l,ls,hj,ppp)
                 if l == '●':
                     Ficha1.Verificaciones_de_Eliminar(z,'●',100,'●','○',ml,self.ioo)
                 else:
                    if l == '○':
                         Ficha1.Verificaciones_de_Eliminar(ml,'○',100,'○','●',z,self.iopp)
-
-#Esta es la clase contadores sirve para contar todas las fichas que se van a plasmar en el tablero y tenerla en orden, por eso su nombre contadores.
+                        
 class Contadores(Tablero):
     
-    #Esta funcion esta creada para darle los 9 turnos de los dos jugadores que tienen para plasmar su fichas y que no pasen de 9 cada uno porque solamente esta permitido 9 fichas por jugadores.
     def Contador_de_jugadas(self):
                 
         c_jugador1 = 9
@@ -854,16 +830,12 @@ class Contadores(Tablero):
                 Ficha1.Piezas_en_el_Tablero('○',ml,9,'○','●',z,self.iop)
                 c_jugador2-=1
 
-    #La funcion contador_de_movimiento es la que controla que cada jugador pueda mover sus 9 fichas correctamente y que el juego sea infinito si es necesario...
-    # y es la funcion mas importante del programa porque es la que regula casi todas las otras funciones y para terminar tiene una condicion que es la que verifica...
-    #si uno de los dos jugadores gano la partida y eso se sabe cuando solamente le quedan 2 fichas a tu oponente asi es la forma de ganar el juego.
     def Contador_de_movimiento(self):
         global blanca
         global negra1
         m_jugador1 = 100
         m_jugador2 = 100
         p = 0
-        #Esta es la funcion que dice si ganaste o no, cuando tu oponente se quede con 2 fichas asi GANASTE.
         if blanca >= 7 or negra1 >= 7:
             if blanca >= 7:
                 system("cls")
@@ -883,15 +855,11 @@ class Contadores(Tablero):
                 Ficha1.Verificaciones(ml,'○',100,'○','●',z,self.iopp)
                 m_jugador2-=1
 
-# Aqui estan los objetos de las clases y las llamadas mas importantes de programa. GRACIAS 
-
-# objetos
 Estetica1 = Estetica()
 Tablero1 = Tablero()
 Ficha1 = Fichas()
 Contadores1 = Contadores()
 
-#llamadas
 Estetica1.Piesas()
 Tablero1.Imprimir()
 Contadores1.Contador_de_jugadas()
