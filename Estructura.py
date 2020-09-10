@@ -5,13 +5,21 @@ z = input("Player's name1:")
 ml = input("Player's name2:")
 blanca = 0
 negra1 = 0
+c_jugador1 = 4
+c_jugador2 = 4
 system("cls")
 
 class Estetica():
-   
+
     def Piesas(self):
-        print ('Pieces of ' + z +" = ●●●●●●●●●")
-        print('Pieces of ' + ml +" = ○○○○○○○○○")
+        global c_jugador1
+        global c_jugador2  
+        BolaBlanca = "●"
+        BolaNegra = "○"
+        u = c_jugador1 * BolaBlanca
+        o = c_jugador2 * BolaNegra
+        print ('Pieces of ' + z + " " + str(u))
+        print('Pieces of ' + ml + " " + str(o))
 
 class Tablero():
     
@@ -46,6 +54,8 @@ class Tablero():
 class Fichas(Tablero):
 
     def Piezas_en_el_Tablero(self,jugador1,nombre_jugador,po,l1,enemigo,nl,pp):
+        global c_jugador1
+        global c_jugador2  
         self.lk = input('ROW OF : ' + nombre_jugador)
         self.lj= input('COLUNA OF : '+ nombre_jugador)
         if (self.lk not in self.verificacion or self.lj not in self.verificacion or 
@@ -63,6 +73,8 @@ class Fichas(Tablero):
                 system('cls')
                 Estetica1.Piesas()
                 Ficha1.Imprimir()
+                print(c_jugador1)
+                print(c_jugador2)
                 if l1 == '●':
                     Ficha1.Eliminar(jugador1,nombre_jugador,po,l1,enemigo,nl,pp) 
                 if l1 == '○':   
@@ -70,7 +82,7 @@ class Fichas(Tablero):
             else:
                 print('INVALID PLAY')
                 Ficha1.Piezas_en_el_Tablero(jugador1,nombre_jugador,po,l1,enemigo,nl,pp)
-                 
+
 
     def Eliminar(self,jugador1,nombre_jugador,po,l1,enemigo,nl,pp):
             o1 = self.matrix     
@@ -90,8 +102,7 @@ class Fichas(Tablero):
                         [[o1[2][4]],[o1[3][4]],[o1[4][4]]],
                         [[o1[1][5]],[o1[3][5]],[o1[5][5]]],
                         [[o1[0][6]],[o1[3][6]],[o1[6][6]]]]
-            
-           
+
             if l1 == '●' or l1 == '○': 
                 self.fila2 = [[l1], [l1], [l1]]
                 self.fila4 = [[pp], [l1], [l1]]
@@ -814,17 +825,17 @@ class Fichas(Tablero):
 class Contadores(Tablero):
     
     def Contador_de_jugadas(self):
-                
-        c_jugador1 = 9
-        c_jugador2 = 9
+        
+        global c_jugador1
+        global c_jugador2      
         i = 0 
-        while i < 9:
+        while i < 4:
             i+=1
             while c_jugador1 + 1 >  c_jugador2:
-                Ficha1.Piezas_en_el_Tablero('●',z,9,'●','○',ml,self.io)
+                Ficha1.Piezas_en_el_Tablero('●',z,4,'●','○',ml,self.io)
                 c_jugador1-=1
             while  c_jugador2 > c_jugador1:
-                Ficha1.Piezas_en_el_Tablero('○',ml,9,'○','●',z,self.iop)
+                Ficha1.Piezas_en_el_Tablero('○',ml,4,'○','●',z,self.iop)
                 c_jugador2-=1
 
     def Contador_de_movimiento(self):
