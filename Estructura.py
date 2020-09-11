@@ -54,8 +54,6 @@ class Tablero():
 class Fichas(Tablero):
 
     def Piezas_en_el_Tablero(self,jugador1,nombre_jugador,po,l1,enemigo,nl,pp):
-        global c_jugador1
-        global c_jugador2  
         self.lk = input('ROW OF : ' + nombre_jugador)
         self.lj= input('COLUNA OF : '+ nombre_jugador)
         if (self.lk not in self.verificacion or self.lj not in self.verificacion or 
@@ -73,8 +71,6 @@ class Fichas(Tablero):
                 system('cls')
                 Estetica1.Piesas()
                 Ficha1.Imprimir()
-                print(c_jugador1)
-                print(c_jugador2)
                 if l1 == '●':
                     Ficha1.Eliminar(jugador1,nombre_jugador,po,l1,enemigo,nl,pp) 
                 if l1 == '○':   
@@ -237,47 +233,41 @@ class Fichas(Tablero):
             print('THIS PLAY IS INVALID')
             Ficha1.Elimanar_enemigo2(jugador1,nombre_jugador,po,l1,enemigo,nl,pp)
         else:
+            if jugador1 == '●':
+                bolita = self.iop
+                color = blanca
+            else:
+                bolita = self.io
+                color = negra1
             if self.matrix[int(self.dr)][int(self.dre)] == enemigo or self.matrix[int(self.dr)][int(self.dre)] == " " + enemigo + " ":
                 if self.matrix[int(self.dr)][int(self.dre)] == " " + enemigo + " ":
                     self.matrix[int(self.dr)][int(self.dre)] = " · "
                 else:
                     self.matrix[int(self.dr)][int(self.dre)] = "·"
+                color = color + 1
                 system('cls')
                 print('KEEP PLAYING UNTIL 2 TABS REMAIN')
                 Ficha1.Imprimir()
             else:
-                if jugador1 == '●':
-                    if self.matrix[int(self.dr)][int(self.dre)] == self.iop or self.matrix[int(self.dr)][int(self.dre)] == " " + self.iop + " ":
-                        if self.matrix[int(self.dr)][int(self.dre)] == " " + self.iop + " ":
-                            self.matrix[int(self.dr)][int(self.dre)] = " · "
-                        else:
-                            self.matrix[int(self.dr)][int(self.dre)] = "·"
-                        system('cls')
-                        print('KEEP PLAYING UNTIL 2 TABS REMAIN')
-                        blanca = blanca + 1
-                        if blanca == 6:
-                            Ficha1.Funcion_jugadores(nombre2,ficha2,ip,l,ls,hj,ppp)
-                        else:                                                          
-                            Ficha1.Imprimir()
+                if self.matrix[int(self.dr)][int(self.dre)] == bolita or self.matrix[int(self.dr)][int(self.dre)] == " " + bolita + " ":
+                    if self.matrix[int(self.dr)][int(self.dre)] == " " + bolita + " ":
+                        self.matrix[int(self.dr)][int(self.dre)] = " · "
                     else:
-                        print('THIS SHEET IS NOT YOUR ENEMY')  
-                        Ficha1.Elimanar_enemigo2(jugador1,nombre_jugador,po,l1,enemigo,nl,pp)
+                        self.matrix[int(self.dr)][int(self.dre)] = "·"
+                    system('cls')
+                    print('KEEP PLAYING UNTIL 2 TABS REMAIN')
+                    color = color + 1
+                    if color == 6: 
+                        Ficha1.Imprimir()
+                        if jugador1 == '●':
+                            Ficha1.Funcion_jugadores(z,'●',100,'●','○',ml,self.ioo)
+                        else:
+                            Ficha1.Funcion_jugadores(ml,'○',100,'○','●',z,self.iopp)
+                    else:                                                          
+                        Ficha1.Imprimir()
                 else:
-                    if self.matrix[int(self.dr)][int(self.dre)] == self.io or self.matrix[int(self.dr)][int(self.dre)] == " " + self.io + " ":
-                        if self.matrix[int(self.dr)][int(self.dre)] == " " + self.io + " ":
-                            self.matrix[int(self.dr)][int(self.dre)] = " · "
-                        else:
-                            self.matrix[int(self.dr)][int(self.dre)] = "·"
-                        system('cls')
-                        print('KEEP PLAYING UNTIL 2 TABS REMAIN')
-                        negra1 = negra1 + 1
-                        if negra1 == 6:
-                            Ficha1.Funcion_jugadores(nombre2,ficha2,ip,l,ls,hj,ppp)
-                        else:                                                          
-                            Ficha1.Imprimir()
-                    else:
-                        print('THIS SHEET IS NOT YOUR ENEMY')  
-                        Ficha1.Elimanar_enemigo2(jugador1,nombre_jugador,po,l1,enemigo,nl,pp)
+                    print('THIS SHEET IS NOT YOUR ENEMY')  
+                    Ficha1.Elimanar_enemigo2(jugador1,nombre_jugador,po,l1,enemigo,nl,pp)
 
 
     def Verificaciones(self,nombre2,ficha2,ip,l,ls,hj,ppp):
@@ -761,6 +751,7 @@ class Fichas(Tablero):
 
     def Funcion_jugadores(self,nombre2,ficha2,ip,l,ls,hj,ppp):      
         print('play ' + nombre2 + ' = ' + ficha2)
+        print("o")
         self.wss = input('THE ROW OF '+ nombre2 + ' WHAT DO YOU WANT TO MOVE:')
         self.waa = input('THE COLUNA OF ' + nombre2 + ' WHAT DO YOU WANT TO MOVE:')
         if (self.wss not in self.verificacion or self.waa not in self.verificacion or 
