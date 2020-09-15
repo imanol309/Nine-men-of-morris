@@ -79,149 +79,50 @@ class Fichas(Tablero):
                 print('INVALID PLAY')
                 Ficha1.Piezas_en_el_Tablero(jugador1,nombre_jugador,po,l1,enemigo,nl,pp)
 
-
     def Eliminar(self,jugador1,nombre_jugador,po,l1,enemigo,nl,pp):
-            o1 = self.matrix     
-            self.F =[[[o1[0][0]],[o1[0][3]],[o1[0][6]]],
-                        [[o1[1][1]],[o1[1][3]],[o1[1][5]]],
-                        [[o1[2][2]],[o1[2][3]],[o1[2][4]]],
-                        [[o1[3][0]],[o1[3][1]],[o1[3][2]]],
-                        [[o1[3][4]],[o1[3][5]],[o1[3][6]]],
-                        [[o1[4][2]],[o1[4][3]],[o1[4][4]]],
-                        [[o1[5][1]],[o1[5][3]],[o1[5][5]]],
-                        [[o1[6][0]],[o1[6][3]],[o1[6][6]]],
-                        [[o1[0][0]],[o1[3][0]],[o1[6][0]]],
-                        [[o1[1][1]],[o1[3][1]],[o1[5][1]]],
-                        [[o1[2][2]],[o1[3][2]],[o1[4][2]]],
-                        [[o1[0][3]],[o1[1][3]],[o1[2][3]]],
-                        [[o1[4][3]],[o1[5][3]],[o1[6][3]]],
-                        [[o1[2][4]],[o1[3][4]],[o1[4][4]]],
-                        [[o1[1][5]],[o1[3][5]],[o1[5][5]]],
-                        [[o1[0][6]],[o1[3][6]],[o1[6][6]]]]
+        o1 = self.matrix     
+        self.F =   [[[0,0], [0,3], [0,6]],
+                    [[1,1], [1,3], [1,5]],
+                    [[2,2], [2,3], [2,4]],
+                    [[3,0], [3,1], [3,2]],
+                    [[3,4], [3,5], [3,6]],
+                    [[4,2], [4,3], [4,4]],
+                    [[5,1], [5,3], [5,5]],
+                    [[6,0], [6,3], [6,6]],
+                    [[0,0], [3,0], [6,0]],
+                    [[1,1], [3,1], [5,1]],
+                    [[2,2], [3,2], [4,2]],
+                    [[0,3], [1,3], [2,3]],
+                    [[4,3], [5,3], [6,3]],
+                    [[2,4], [3,4], [4,4]],
+                    [[1,5], [3,5], [5,5]],
+                    [[0,6], [3,6], [6,6]]]
 
-            if l1 == '●' or l1 == '○': 
-                self.fila2 = [[l1], [l1], [l1]]
-                self.fila4 = [[pp], [l1], [l1]]
-                self.fila5 = [[l1], [pp], [l1]]
-                self.fila6 = [[l1], [l1], [pp]]
-                self.fila7 = [[l1], [pp], [pp]]
-                self.fila8 = [[pp], [l1], [pp]]
-                self.fila9 = [[pp], [pp], [l1]]
-                if (self.fila2 in self.F or self.fila4 in self.F or self.fila5 in self.F 
-                    or self.fila6 in self.F or self.fila7 in self.F or self.fila8 in self.F or 
-                    self.fila9 in self.F):
-                    if (self.fila2 == self.F[0] or self.fila4 == self.F[0]
-                        or self.fila5 == self.F[0] or self.fila6 == self.F[0]
-                        or self.fila7 == self.F[0] or self.fila8 == self.F[0] or self.fila9 == self.F[0]):
-                        o1[0][0] = pp
-                        o1[0][3] = pp
-                        o1[0][6] = pp
-                        Ficha1.Elimanar_enemigo2(jugador1,nombre_jugador,po,l1,enemigo,nl,pp)           
-                    if (self.fila2 == self.F[1] or self.fila4 == self.F[1]
-                        or self.fila5 == self.F[1] or self.fila6 == self.F[1]
-                        or self.fila7 == self.F[1] or self.fila8 == self.F[1] or self.fila9 == self.F[1]):
-                        o1[1][1] = pp 
-                        o1[1][3] = pp 
-                        o1[1][5] = pp
-                        Ficha1.Elimanar_enemigo2(jugador1,nombre_jugador,po,l1,enemigo,nl,pp)                                   
-                    if (self.fila2 == self.F[2] or self.fila4 == self.F[2]
-                        or self.fila5 == self.F[2] or self.fila6 == self.F[2]
-                        or self.fila7 == self.F[2] or self.fila8 == self.F[2] or self.fila9 == self.F[2]):
-                        o1[2][2] = pp 
-                        o1[2][3] = pp 
-                        o1[2][4] = pp
-                        Ficha1.Elimanar_enemigo2(jugador1,nombre_jugador,po,l1,enemigo,nl,pp)           
-                    if (self.fila2 == self.F[3] or self.fila4 == self.F[3]
-                        or self.fila5 == self.F[3] or self.fila6 == self.F[3]
-                        or self.fila7 == self.F[3] or self.fila8 == self.F[3] or self.fila9 == self.F[3]):
-                        o1[3][0] = pp 
-                        o1[3][1] = pp 
-                        o1[3][2] = pp
-                        Ficha1.Elimanar_enemigo2(jugador1,nombre_jugador,po,l1,enemigo,nl,pp)           
-                    if (self.fila2 == self.F[4] or self.fila4 == self.F[4]
-                        or self.fila5 == self.F[4] or self.fila6 == self.F[4]
-                        or self.fila7 == self.F[4] or self.fila8 == self.F[4] or self.fila9 == self.F[4]):
-                        o1[3][4] = pp 
-                        o1[3][5] = pp 
-                        o1[3][6] = pp
-                        Ficha1.Elimanar_enemigo2(jugador1,nombre_jugador,po,l1,enemigo,nl,pp)
-                    if (self.fila2 == self.F[5] or self.fila4 == self.F[5]
-                        or self.fila5 == self.F[5] or self.fila6 == self.F[5]
-                        or self.fila7 == self.F[5] or self.fila8 == self.F[5] or self.fila9 == self.F[5]):
-                        o1[4][2] = pp 
-                        o1[4][3] = pp 
-                        o1[4][4] = pp
-                        Ficha1.Elimanar_enemigo2(jugador1,nombre_jugador,po,l1,enemigo,nl,pp)           
-                    if (self.fila2 == self.F[6] or self.fila4 == self.F[6]
-                        or self.fila5 == self.F[6] or self.fila6 == self.F[6]
-                        or self.fila7 == self.F[6] or self.fila8 == self.F[6] or self.fila9 == self.F[6]):
-                        o1[5][1] = pp 
-                        o1[5][3] = pp 
-                        o1[5][5] = pp
-                        Ficha1.Elimanar_enemigo2(jugador1,nombre_jugador,po,l1,enemigo,nl,pp)           
-                    if (self.fila2 == self.F[7] or self.fila4 == self.F[7]
-                        or self.fila5 == self.F[7] or self.fila6 == self.F[7]
-                        or self.fila7 == self.F[7] or self.fila8 == self.F[7] or self.fila9 == self.F[7]):
-                        o1[6][0] = pp 
-                        o1[6][3] = pp 
-                        o1[6][6] = pp
-                        Ficha1.Elimanar_enemigo2(jugador1,nombre_jugador,po,l1,enemigo,nl,pp)       
-                    if (self.fila2 == self.F[8] or self.fila4 == self.F[8]
-                        or self.fila5 == self.F[8] or self.fila6 == self.F[8]
-                        or self.fila7 == self.F[8] or self.fila8 == self.F[8] or self.fila9 == self.F[8]):
-                        o1[0][0] = pp 
-                        o1[3][0] = pp 
-                        o1[6][0] = pp
-                        Ficha1.Elimanar_enemigo2(jugador1,nombre_jugador,po,l1,enemigo,nl,pp)           
-                    if (self.fila2 == self.F[9] or self.fila4 == self.F[9]
-                        or self.fila5 == self.F[9] or self.fila6 == self.F[9]
-                        or self.fila7 == self.F[9] or self.fila8 == self.F[9] or self.fila9 == self.F[9]):
-                        o1[1][1] = pp 
-                        o1[3][1] = pp 
-                        o1[5][1] = pp
-                        Ficha1.Elimanar_enemigo2(jugador1,nombre_jugador,po,l1,enemigo,nl,pp)           
-                    if (self.fila2 == self.F[10] or self.fila4 == self.F[10]
-                        or self.fila5 == self.F[10] or self.fila6 == self.F[10]
-                        or self.fila7 == self.F[10] or self.fila8 == self.F[10] or self.fila9 == self.F[10]):
-                        o1[2][2] = pp 
-                        o1[3][2] = pp 
-                        o1[4][2] = pp
-                        Ficha1.Elimanar_enemigo2(jugador1,nombre_jugador,po,l1,enemigo,nl,pp)       
-                    if (self.fila2 == self.F[11] or self.fila4 == self.F[11]
-                        or self.fila5 == self.F[11] or self.fila6 == self.F[11]
-                        or self.fila7 == self.F[11] or self.fila8 == self.F[11] or self.fila9 == self.F[11]):
-                        o1[0][3] = pp 
-                        o1[1][3] = pp 
-                        o1[2][3] = pp 
-                        Ficha1.Elimanar_enemigo2(jugador1,nombre_jugador,po,l1,enemigo,nl,pp)       
-                    if (self.fila2 == self.F[12] or self.fila4 == self.F[12]
-                        or self.fila5 == self.F[12] or self.fila6 == self.F[12]
-                        or self.fila7 == self.F[12] or self.fila8 == self.F[12] or self.fila9 == self.F[12]):
-                        o1[4][3] = pp 
-                        o1[5][3] = pp 
-                        o1[6][3] = pp 
-                        Ficha1.Elimanar_enemigo2(jugador1,nombre_jugador,po,l1,enemigo,nl,pp)       
-                    if (self.fila2 == self.F[13] or self.fila4 == self.F[13]
-                        or self.fila5 == self.F[13] or self.fila6 == self.F[13]
-                        or self.fila7 == self.F[13] or self.fila8 == self.F[13] or self.fila9 == self.F[13]):
-                        o1[2][4] = pp 
-                        o1[3][4] = pp 
-                        o1[4][4] = pp  
-                        Ficha1.Elimanar_enemigo2(jugador1,nombre_jugador,po,l1,enemigo,nl,pp)       
-                    if (self.fila2 == self.F[14] or self.fila4 == self.F[14]
-                        or self.fila5 == self.F[14] or self.fila6 == self.F[14]
-                        or self.fila7 == self.F[14] or self.fila8 == self.F[14] or self.fila9 == self.F[14]):
-                        o1[1][5] = pp 
-                        o1[3][5] = pp 
-                        o1[5][5] = pp 
-                        Ficha1.Elimanar_enemigo2(jugador1,nombre_jugador,po,l1,enemigo,nl,pp)           
-                    if (self.fila2 == self.F[15] or self.fila4 == self.F[15]
-                        or self.fila5 == self.F[15] or self.fila6 == self.F[15]
-                        or self.fila7 == self.F[15] or self.fila8 == self.F[15] or self.fila9 == self.F[15]):
-                        o1[0][6] = pp 
-                        o1[3][6] = pp 
-                        o1[6][6] = pp    
-                        Ficha1.Elimanar_enemigo2(jugador1,nombre_jugador,po,l1,enemigo,nl,pp)
+        self.fila2 = [[l1], [l1], [l1]]
+        self.fila4 = [[pp], [l1], [l1]]
+        self.fila5 = [[l1], [pp], [l1]]
+        self.fila6 = [[l1], [l1], [pp]]
+        self.fila7 = [[l1], [pp], [pp]]
+        self.fila8 = [[pp], [l1], [pp]]
+        self.fila9 = [[pp], [pp], [l1]]
+        
+        Se_puede = [
+            self.fila2,
+            self.fila4,
+            self.fila5,
+            self.fila6,
+            self.fila7,
+            self.fila8,
+            self.fila9
+        ]
+
+        for r in self.F:
+            for t in Se_puede:
+                if t == [[o1[r[0][0]][r[0][1]]], [o1[r[1][0]][r[1][1]]], [o1[r[2][0]][r[2][1]]]]:
+                    o1[r[0][0]][r[0][1]] = pp
+                    o1[r[1][0]][r[1][1]] = pp
+                    o1[r[2][0]][r[2][1]] = pp
+                    Ficha1.Elimanar_enemigo2(jugador1,nombre_jugador,po,l1,enemigo,nl,pp)
 
     def Elimanar_enemigo2(self,jugador1,nombre_jugador,po,l1,enemigo,nl,pp):
         global blanca
@@ -482,7 +383,6 @@ class Fichas(Tablero):
                 Ficha1.Verificaciones(nombre2,ficha2,ip,l,ls,hj,ppp)
 
     def Imprimidor(self,nombre2,ficha2,ip,l,ls,hj,ppp):
-        
         if self.matrix[int(self.pl)][int(self.pls)] == "·" or self.matrix[int(self.pl)][int(self.pls)] == " · ":
                 if self.matrix[int(self.pl)][int(self.pls)] == " · ":
                     if self.t == '31' or self.t == '35': 
@@ -508,143 +408,54 @@ class Fichas(Tablero):
             print('THIS POSITION CANNOT BE')
             Ficha1.Verificaciones(nombre2,ficha2,ip,l,ls,hj,ppp)
 
-    def Verificaciones_de_Eliminar(self,nombre2,ficha2,ip,l,ls,hj,ppp): 
+    def Verificaciones_de_Eliminar(self,nombre2,ficha2,ip,l,ls,hj,ppp):
         global blanca
         global negra1
-        s = self.matrix
-        self.F =[[[s[0][0]],[s[0][3]],[s[0][6]]],
-                [[s[1][1]],[s[1][3]],[s[1][5]]],
-                [[s[2][2]],[s[2][3]],[s[2][4]]],
-                [[s[3][0]],[s[3][1]],[s[3][2]]],
-                [[s[3][4]],[s[3][5]],[s[3][6]]],
-                [[s[4][2]],[s[4][3]],[s[4][4]]],
-                [[s[5][1]],[s[5][3]],[s[5][5]]],
-                [[s[6][0]],[s[6][3]],[s[6][6]]],
-                [[s[0][0]],[s[3][0]],[s[6][0]]],
-                [[s[1][1]],[s[3][1]],[s[5][1]]],
-                [[s[2][2]],[s[3][2]],[s[4][2]]],
-                [[s[0][3]],[s[1][3]],[s[2][3]]],
-                [[s[4][3]],[s[5][3]],[s[6][3]]],
-                [[s[2][4]],[s[3][4]],[s[4][4]]],
-                [[s[1][5]],[s[3][5]],[s[5][5]]],
-                [[s[0][6]],[s[3][6]],[s[6][6]]]]
+        
+        s = self.matrix     
+        self.F =   [[[0,0], [0,3], [0,6]],
+                    [[1,1], [1,3], [1,5]],
+                    [[2,2], [2,3], [2,4]],
+                    [[3,0], [3,1], [3,2]],
+                    [[3,4], [3,5], [3,6]],
+                    [[4,2], [4,3], [4,4]],
+                    [[5,1], [5,3], [5,5]],
+                    [[6,0], [6,3], [6,6]],
+                    [[0,0], [3,0], [6,0]],
+                    [[1,1], [3,1], [5,1]],
+                    [[2,2], [3,2], [4,2]],
+                    [[0,3], [1,3], [2,3]],
+                    [[4,3], [5,3], [6,3]],
+                    [[2,4], [3,4], [4,4]],
+                    [[1,5], [3,5], [5,5]],
+                    [[0,6], [3,6], [6,6]]]
 
-        self.fila2 = [[l], [l], [l]]
-        self.fila4 = [[ppp], [l], [l]]
-        self.fila5 = [[l], [ppp], [l]]
-        self.fila6 = [[l], [l], [ppp]]
-        self.fila7 = [[l], [ppp], [ppp]]
-        self.fila8 = [[ppp], [l], [ppp]]
-        self.fila9 = [[ppp], [ppp], [l]]
-        print(ppp)
-        if (self.fila2 in self.F or self.fila4 in self.F or self.fila5 in self.F 
-            or self.fila6 in self.F or self.fila7 in self.F or self.fila8 in self.F or 
-            self.fila9 in self.F):
-            if (self.fila2 == self.F[0] or self.fila4 == self.F[0]
-                or self.fila5 == self.F[0] or self.fila6 == self.F[0]
-                or self.fila7 == self.F[0] or self.fila8 == self.F[0] or self.fila9 == self.F[0]):
-                    s[0][0] = ppp
-                    s[0][3] = ppp
-                    s[0][6] = ppp
-                    Ficha1.Elimanar_enemigo(nombre2,ficha2,ip,l,ls,hj,ppp)           
-            if (self.fila2 == self.F[1] or self.fila4 == self.F[1]
-                or self.fila5 == self.F[1] or self.fila6 == self.F[1]
-                or self.fila7 == self.F[1] or self.fila8 == self.F[1] or self.fila9 == self.F[1]):
-                    s[1][1] = ppp
-                    s[1][3] = ppp 
-                    s[1][5] = ppp
-                    Ficha1.Elimanar_enemigo(nombre2,ficha2,ip,l,ls,hj,ppp)                                   
-            if (self.fila2 == self.F[2] or self.fila4 == self.F[2]
-                or self.fila5 == self.F[2] or self.fila6 == self.F[2]
-                or self.fila7 == self.F[2] or self.fila8 == self.F[2] or self.fila9 == self.F[2]):
-                    s[2][2] = ppp 
-                    s[2][3] = ppp 
-                    s[2][4] = ppp
-                    Ficha1.Elimanar_enemigo(nombre2,ficha2,ip,l,ls,hj,ppp)        
-            if (self.fila2 == self.F[4] or self.fila4 == self.F[4]
-                or self.fila5 == self.F[4] or self.fila6 == self.F[4]
-                or self.fila7 == self.F[4] or self.fila8 == self.F[4] or self.fila9 == self.F[4]):
-                    s[3][4] = ppp 
-                    s[3][5] = ppp 
-                    s[3][6] = ppp
+        self.fila2 = [[l],  [l],   [l]]
+        self.fila4 = [[ppp],[l],   [l]]
+        self.fila5 = [[l],  [ppp], [l]]
+        self.fila6 = [[l],  [l],   [ppp]]
+        self.fila7 = [[l],  [ppp], [ppp]]
+        self.fila8 = [[ppp],[l],   [ppp]]
+        self.fila9 = [[ppp],[ppp], [l]]
+        
+        Se_puede = [
+            self.fila2,
+            self.fila4,
+            self.fila5,
+            self.fila6,
+            self.fila7,
+            self.fila8,
+            self.fila9
+        ]
+
+        for r in self.F:
+            for t in Se_puede:
+                if t == [[s[r[0][0]][r[0][1]]], [s[r[1][0]][r[1][1]]], [s[r[2][0]][r[2][1]]]]:
+                    s[r[0][0]][r[0][1]] = ppp
+                    s[r[1][0]][r[1][1]] = ppp
+                    s[r[2][0]][r[2][1]] = ppp
                     Ficha1.Elimanar_enemigo(nombre2,ficha2,ip,l,ls,hj,ppp)
-            if (self.fila2 == self.F[5] or self.fila4 == self.F[5]
-                or self.fila5 == self.F[5] or self.fila6 == self.F[5]
-                or self.fila7 == self.F[5] or self.fila8 == self.F[5] or self.fila9 == self.F[5]):
-                    s[4][2] = ppp 
-                    s[4][3] = ppp 
-                    s[4][4] = ppp
-                    Ficha1.Elimanar_enemigo(nombre2,ficha2,ip,l,ls,hj,ppp)           
-            if (self.fila2 == self.F[6] or self.fila4 == self.F[6]
-                or self.fila5 == self.F[6] or self.fila6 == self.F[6]
-                or self.fila7 == self.F[6] or self.fila8 == self.F[6] or self.fila9 == self.F[6]):
-                    s[5][1] = ppp 
-                    s[5][3] = ppp 
-                    s[5][5] = ppp
-                    Ficha1.Elimanar_enemigo(nombre2,ficha2,ip,l,ls,hj,ppp)           
-            if (self.fila2 == self.F[7] or self.fila4 == self.F[7]
-                or self.fila5 == self.F[7] or self.fila6 == self.F[7]
-                or self.fila7 == self.F[7] or self.fila8 == self.F[7] or self.fila9 == self.F[7]):
-                    s[6][0] = ppp
-                    s[6][3] = ppp 
-                    s[6][6] = ppp
-                    Ficha1.Elimanar_enemigo(nombre2,ficha2,ip,l,ls,hj,ppp)       
-            if (self.fila2 == self.F[8] or self.fila4 == self.F[8]
-                or self.fila5 == self.F[8] or self.fila6 == self.F[8]
-                or self.fila7 == self.F[8] or self.fila8 == self.F[8] or self.fila9 == self.F[8]):
-                    s[0][0] = ppp 
-                    s[3][0] = ppp 
-                    s[6][0] = ppp
-                    Ficha1.Elimanar_enemigo(nombre2,ficha2,ip,l,ls,hj,ppp)              
-            if (self.fila2 == self.F[9] or self.fila4 == self.F[9]
-                or self.fila5 == self.F[9] or self.fila6 == self.F[9]
-                or self.fila7 == self.F[9] or self.fila8 == self.F[9] or self.fila9 == self.F[9]):
-                    s[1][1] = ppp 
-                    s[3][1] = ppp 
-                    s[5][1] = ppp
-                    Ficha1.Elimanar_enemigo(nombre2,ficha2,ip,l,ls,hj,ppp)           
-            if (self.fila2 == self.F[10] or self.fila4 == self.F[10]
-                or self.fila5 == self.F[10] or self.fila6 == self.F[10]
-                or self.fila7 == self.F[10] or self.fila8 == self.F[10] or self.fila9 == self.F[10]):
-                    s[2][2] = ppp 
-                    s[3][2] = ppp 
-                    s[4][2] = ppp
-                    Ficha1.Elimanar_enemigo(nombre2,ficha2,ip,l,ls,hj,ppp)       
-            if (self.fila2 == self.F[11] or self.fila4 == self.F[11]
-                or self.fila5 == self.F[11] or self.fila6 == self.F[11]
-                or self.fila7 == self.F[11] or self.fila8 == self.F[11] or self.fila9 == self.F[11]):
-                    s[0][3] = ppp 
-                    s[1][3] = ppp 
-                    s[2][3] = ppp 
-                    Ficha1.Elimanar_enemigo(nombre2,ficha2,ip,l,ls,hj,ppp)       
-            if (self.fila2 == self.F[12] or self.fila4 == self.F[12]
-                or self.fila5 == self.F[12] or self.fila6 == self.F[12]
-                or self.fila7 == self.F[12] or self.fila8 == self.F[12] or self.fila9 == self.F[12]):
-                    s[4][3] = ppp 
-                    s[5][3] = ppp 
-                    s[6][3] = ppp 
-                    Ficha1.Elimanar_enemigo(nombre2,ficha2,ip,l,ls,hj,ppp)       
-            if (self.fila2 == self.F[13] or self.fila4 == self.F[13]
-                or self.fila5 == self.F[13] or self.fila6 == self.F[13]
-                or self.fila7 == self.F[13] or self.fila8 == self.F[13] or self.fila9 == self.F[13]):
-                    s[2][4] = ppp 
-                    s[3][4] = ppp 
-                    s[4][4] = ppp  
-                    Ficha1.Elimanar_enemigo(nombre2,ficha2,ip,l,ls,hj,ppp)      
-            if (self.fila2 == self.F[14] or self.fila4 == self.F[14]
-                or self.fila5 == self.F[14] or self.fila6 == self.F[14]
-                or self.fila7 == self.F[14] or self.fila8 == self.F[14] or self.fila9 == self.F[14]):
-                    s[1][5] = ppp 
-                    s[3][5] = ppp 
-                    s[5][5] = ppp 
-                    Ficha1.Elimanar_enemigo(nombre2,ficha2,ip,l,ls,hj,ppp)          
-            if (self.fila2 == self.F[15] or self.fila4 == self.F[15]
-                or self.fila5 == self.F[15] or self.fila6 == self.F[15]
-                or self.fila7 == self.F[15] or self.fila8 == self.F[15] or self.fila9 == self.F[15]):
-                    s[0][6] = ppp 
-                    s[3][6] = ppp 
-                    s[6][6] = ppp    
-                    Ficha1.Elimanar_enemigo(nombre2,ficha2,ip,l,ls,hj,ppp)
+                    
         else:
             if l == '●':
                     if negra1 == 6:
@@ -785,9 +596,9 @@ class Fichas(Tablero):
                 if l == '●':
                     Ficha1.Verificaciones_de_Eliminar(z,'●',100,'●','○',ml,self.ioo)
                 else:
-                   if l == '○':
+                    if l == '○':
                         Ficha1.Verificaciones_de_Eliminar(ml,'○',100,'○','●',z,self.iopp)
-                        
+
 class Contadores(Tablero):
     def Contador_de_jugadas(self):
         global c_jugador1
@@ -837,4 +648,3 @@ Estetica1.Piesas()
 Tablero1.Imprimir()
 Contadores1.Contador_de_jugadas()
 Contadores1.Contador_de_movimiento()
-
