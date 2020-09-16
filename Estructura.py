@@ -54,8 +54,15 @@ class Tablero():
 class Fichas(Tablero):
 
     def Piezas_en_el_Tablero(self,jugador1,nombre_jugador,po,l1,enemigo,nl,pp):
-        self.lk = input('ROW OF : ' + nombre_jugador)
-        self.lj= input('COLUNA OF : '+ nombre_jugador)
+        
+        iop = input(nombre_jugador + " Enter the column and row: ")
+        if len(iop) < 2 or len(iop) > 2 :
+            print("Please enter two numbers 'columns and rows' ")
+            Ficha1.Piezas_en_el_Tablero(jugador1,nombre_jugador,po,l1,enemigo,nl,pp)
+        self.lk = iop[0]
+        self.lj = iop[1]
+        # self.lk = input('ROW OF : ' + nombre_jugador)
+        # self.lj= input('COLUNA OF : '+ nombre_jugador)
         if (self.lk not in self.verificacion or self.lj not in self.verificacion or 
             self.lk == '' or self.lj == '' or self.lk == '\n' and self.lj == '\n'):
             print('THIS PLAY IS INVALID')
@@ -127,8 +134,12 @@ class Fichas(Tablero):
     def Elimanar_enemigo2(self,jugador1,nombre_jugador,po,l1,enemigo,nl,pp):
         global blanca
         global negra1
-        self.dr = input('WHICH ROW OF '+ nl +'DO YOU WANT TO DELETE:')
-        self.dre = input ('CUAL COLUNA DE '+ nl + 'DO YOU WANT TO DELETE:')
+        p = input("Enter the column and row you want to remove from: " + nl)
+        if len(p) < 2 or len(p) > 2 :
+            print("Please enter two numbers 'columns and rows' ")
+            Ficha1.Elimanar_enemigo2(jugador1,nombre_jugador,po,l1,enemigo,nl,pp)
+        self.dr = p[0]
+        self.dre = p[1]
         if (self.dr not in self.verificacion or self.dre not in self.verificacion or 
             self.dr == '' or self.dre == '' or self.dr == '\n' and self.dr == '\n'):
             print('THIS PLAY IS INVALID')
@@ -169,8 +180,14 @@ class Fichas(Tablero):
 
     def Verificaciones(self,nombre2,ficha2,ip,l,ls,hj,ppp):
         print('play ' + nombre2 + ' = ' + ficha2)
-        self.ws = input('THE ROW OF '+ nombre2 + ' WHAT DO YOU WANT TO MOVE:')
-        self.wa = input('THE COLUNA OF ' + nombre2 + ' WHAT DO YOU WANT TO MOVE:')
+        i = input("the row and column "+ nombre2 +" you want to move:")
+        if len(i) < 2 or len(i) > 2 :
+            print("Please enter two numbers 'columns and rows' ")
+            Ficha1.Verificaciones(nombre2,ficha2,ip,l,ls,hj,ppp)
+        self.ws = i[0]
+        self.wa = i[1]
+        # self.ws = input('THE ROW OF '+ nombre2 + ' WHAT DO YOU WANT TO MOVE:')
+        # self.wa = input('THE COLUNA OF ' + nombre2 + ' WHAT DO YOU WANT TO MOVE:')
         if (self.ws not in self.verificacion or self.wa not in self.verificacion or 
             self.ws == '' or self.wa == '' or self.ws == '\n' and self.ws== '\n'):
             print('THIS PLAY IS INVALID')
@@ -206,14 +223,14 @@ class Fichas(Tablero):
 
     def Posiciones_de_movimientos(self,nombre2,ficha2,ip,l,ls,hj,ppp): 
         print('play ' + nombre2 + ' = ' + ficha2)
-        self.pl = input('WHICH RANGE DO YOU WANT TO MOVE:')
-        self.pls = input('TO WHICH COLUNA DO YOU WANT TO MOVE:') 
+        e = input("Which row and column do you want to move it to:")
+        if len(e) < 2 or len(e) > 2 :
+            print("Please enter two numbers 'columns and rows' ")
+            Ficha1.Verificaciones(nombre2,ficha2,ip,l,ls,hj,ppp)
+        self.pl = e[0]
+        self.pls = e[1]
         p = (self.pl + self.pls)
         self.p = (self.pl + self.pls)
-        # Posicion de una linia #1
-        if p == '2020':
-            Ficha1.Verificaciones(nombre2,ficha2,ip,l,ls,hj,ppp)
-            
         if self.t == '00' :
             if p == '03' or p == '30':
                 Ficha1.Imprimidor(nombre2,ficha2,ip,l,ls,hj,ppp)
@@ -483,8 +500,12 @@ class Fichas(Tablero):
     def Elimanar_enemigo(self,nombre2,ficha2,ip,l,ls,hj,ppp):
         global blanca
         global negra1
-        self.qw = input('WHICH ROW OF '+ hj +'DO YOU WANT TO DELETE:')
-        self.qwe = input ('WHICH COLUNA OF '+ hj + 'DO YOU WANT TO DELETE:')
+        o = input("Enter the column and row you want to remove from: " + hj)
+        if len(o) < 2 or len(o) > 2 :
+            print("Please enter two numbers 'columns and rows' ")
+            Ficha1.Elimanar_enemigo(nombre2,ficha2,ip,l,ls,hj,ppp)
+        self.qw = o[0]
+        self.qwe = o[1]
         if (self.qw not in self.verificacion or self.qwe not in self.verificacion or 
             self.qw == '' or self.qwe == '' or self.qw == '\n' and self.qw == '\n'):
             print('THIS PLAY IS INVALID')
@@ -537,9 +558,12 @@ class Fichas(Tablero):
 
     def Funcion_jugadores(self,nombre2,ficha2,ip,l,ls,hj,ppp):      
         print('play ' + nombre2 + ' = ' + ficha2)
-        print("o")
-        self.wss = input('THE ROW OF '+ nombre2 + ' WHAT DO YOU WANT TO MOVE:')
-        self.waa = input('THE COLUNA OF ' + nombre2 + ' WHAT DO YOU WANT TO MOVE:')
+        t = input("the row and column "+ nombre2 +" you want to move:")
+        if len(t) < 2 or len(t) > 2 :
+            print("Please enter two numbers 'columns and rows' ")
+            Ficha1.Funcion_jugadores(nombre2,ficha2,ip,l,ls,hj,ppp)
+        self.wss = t[0]
+        self.waa = t[1]
         if (self.wss not in self.verificacion or self.waa not in self.verificacion or 
             self.wss == '' or self.waa == '' or self.wss == '\n' and self.wss== '\n'):
             print('THIS PLAY IS INVALID')
@@ -575,8 +599,12 @@ class Fichas(Tablero):
                     Ficha1.Funcion_jugadores(nombre2,ficha2,ip,l,ls,hj,ppp)
 
     def Imprimir_de_tres(self,nombre2,ficha2,ip,l,ls,hj,ppp): 
-        self.pll = input('WHICH RANGE DO YOU WANT TO MOVE:')
-        self.plss = input('TO WHICH COLUNA DO YOU WANT TO MOVE:') 
+        q = input("Which row and column do you want to move it to:")
+        if len(q) < 2 or len(q) > 2 :
+            print("Please enter two numbers 'columns and rows' ")
+            Ficha1.Funcion_jugadores(nombre2,ficha2,ip,l,ls,hj,ppp)
+        self.pll = q[0]
+        self.pls = q[1]
         if self.matrix[int(self.pll)][int(self.plss)] == "·" or self.matrix[int(self.pll)][int(self.plss)] == " · ":
                 if self.matrix[int(self.pll)][int(self.plss)] == " · ":
                     if self.t == '31' or self.t == '35': 
