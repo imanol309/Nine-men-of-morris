@@ -1,6 +1,7 @@
 from os import system
 import sys
 
+
 class Board():
     def __init__(self):
         self.a = ["·","——","——","·","——","——","·"]
